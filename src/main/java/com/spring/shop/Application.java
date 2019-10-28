@@ -18,15 +18,15 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    CommandLineRunner bootstrap(final UserRepository userRepository, final PasswordEncoder passwordEncoder) {
-        return (args) -> {
-            userRepository.save(
-                    new User("Vadim", "Osipovich","p",passwordEncoder.encode("p"), UserRole.ROLE_ADMIN)
-            );
-
-
-            userRepository.findAll().stream().map(User::toString).forEach(System.out::println);
-        };
-    }
+//    @Bean
+//    CommandLineRunner bootstrap(final UserRepository userRepository, final PasswordEncoder passwordEncoder) {
+//        return (args) -> {
+//            userRepository.save(
+//                    new User("Vadim", "Osipovich","p",passwordEncoder.encode("p"), UserRole.ROLE_ADMIN)
+//            );
+//
+//
+//            userRepository.findAll().stream().map(User::toString).forEach(System.out::println);
+//        };
+//    }
 }
