@@ -29,7 +29,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @RequiredArgsConstructor
 class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private static final String[] allowedUrlsForPost = new String[]{"/auth/login"};
+    private static final String[] allowedUrlsForPost = new String[]{"/auth/login","/singup/reg"};
 
 
     private final JwtAuthenticationProvider jwtAuthenticationProvider;

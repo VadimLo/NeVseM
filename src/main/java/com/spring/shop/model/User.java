@@ -16,17 +16,24 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String name;
-    private String email;
+    private String firstName;
+    private String lastName;
+    private String username;
+
+
+    private String password;
 
     @Column
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
 
-    public User(String username, String password, final UserRole role) {
-        this.name = username;
-        this.email = password;
+
+    public User(String firstName, String lastName, String username, String password,final UserRole role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
         this.role = role;
     }
 

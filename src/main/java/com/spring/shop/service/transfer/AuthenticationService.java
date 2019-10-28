@@ -73,7 +73,7 @@ public class AuthenticationService {
     @Transactional(readOnly = true)
     public AuthUserDto getMe() {
         Authentication authentication = SecurityHelper.getAuthenticationWithCheck();
-        User byUsername = userRepository.findFirstByName(authentication.getName());
+        User byUsername = userRepository.findFirstByUsername(authentication.getName());
 
         return authUserTransformer.makeDto(byUsername);
     }

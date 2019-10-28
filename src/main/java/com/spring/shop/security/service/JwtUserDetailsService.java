@@ -20,7 +20,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User byUsername = this.userRepository.findFirstByName(username);
+        User byUsername = this.userRepository.findFirstByUsername(username);
 
         return Optional.ofNullable(byUsername)
                 .map(JwtUserDetails::new)
