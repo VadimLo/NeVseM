@@ -45,6 +45,41 @@
 
 </mdb-navbar>
 
+
+
+<!--Navbar-->
+
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" *ngIf="!isLog()">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+
+    <ul class="navbar-nav ml-auto">
+
+      <li mdbWavesEffect dropdown class="nav-item">
+        <a class="nav-link waves-light" routerLink="login" mdbWavesEffect>
+          <mdb-icon fas icon="cog"></mdb-icon>
+          Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" routerLink="singup"  mdbWavesEffect>
+          <mdb-icon fas icon="cog"></mdb-icon>
+          Sing Up</a>
+      </li>
+
+
+    </ul>
+    <!-- Links -->
+  </links>
+
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+
 <!--второй-->
 
 <!--&lt;!&ndash;Navbar&ndash;&gt;-->
