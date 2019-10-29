@@ -1,0 +1,13 @@
+<a href="/login" (click)="logout()">Logout</a>
+
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+<ul>
+  <li *ngFor="let user of users">{{ user.name }} {{ user.role }} {{user.id}}
+    <button class="text-danger">
+      <a (click)="deleteUser(user.id)" >Delete</a>
+    </button>
+
+  </li>
+
+</ul>
