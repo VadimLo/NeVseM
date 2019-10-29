@@ -1,5 +1,4 @@
-<a href="/login" (click)="logout()">Logout</a>
-
+<a routerLink="/login" (click)="logout()" class="btn btn-link">Logout</a>
 <div *ngIf="errorMessage">{{ errorMessage }}</div>
 
 <ul>
