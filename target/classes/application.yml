@@ -7,6 +7,20 @@ spring:
     url: jdbc:mysql://localhost:3306/online_shop
     username: root
     password: rashki
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: vadimlobad@gmail.com
+    password: rashki13p
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
 security:
   jwt:
     token:

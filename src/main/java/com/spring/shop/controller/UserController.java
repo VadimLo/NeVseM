@@ -1,21 +1,23 @@
 package com.spring.shop.controller;
 
-import com.spring.shop.model.StringResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.spring.shop.model.ConfirmationToken;
 import com.spring.shop.model.User;
 import com.spring.shop.model.UserRole;
+import com.spring.shop.repository.ConfirmationTokenRepository;
 import com.spring.shop.repository.UserRepository;
+import com.spring.shop.service.mail.EmailSenderService;
 import lombok.RequiredArgsConstructor;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,6 +28,8 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ConfirmationTokenRepository confirmationTokenRepository;
+    private final EmailSenderService emailSenderService;
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/users")
@@ -45,17 +49,45 @@ public class UserController {
     }
 
     @PostMapping("/singup/reg")
-    //@ResponseStatus(value = HttpStatus.OK)
-
     HttpStatus addUser(@RequestBody User user) {
-        User byUsername = userRepository.findFirstByUsername(user.getUsername());
-        if (byUsername == null) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setRole(UserRole.ROLE_USER);
-            userRepository.save(user);
-            return HttpStatus.OK;
+        User byEmailAndUsername = userRepository.findByEmailAndUsername(user.getEmail(), user.getUsername());
+        if (byEmailAndUsername != null) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(UserRole.ROLE_USER);
 
-        return HttpStatus.INTERNAL_SERVER_ERROR;
+
+        userRepository.save(user);
+        ConfirmationToken confirmationToken = new ConfirmationToken(user);
+
+        confirmationTokenRepository.save(confirmationToken);
+
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(user.getEmail());
+        mailMessage.setSubject("Complete Registration!");
+        mailMessage.setFrom("vadimlobad@gmail.com");
+        mailMessage.setText("To confirm your account, please click here : "
+                + "http://localhost:8080/singup/regtoken/" + confirmationToken.getConfirmationToken());
+
+        emailSenderService.sendEmail(mailMessage);
+        return HttpStatus.OK;
+
+    }
+
+    @GetMapping("singup/regtoken/{token}")
+    void variateUser(@PathVariable String token) {
+        System.out.println("hi daun");
+        ConfirmationToken byConfirmationToken = confirmationTokenRepository.findByConfirmationToken(token);
+
+        if (byConfirmationToken != null) {
+            User user = userRepository.findByEmail(byConfirmationToken.getUser().getEmail());
+            user.setEnabled(true);
+            userRepository.save(user);
+           // return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
+        //return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
+
+
     }
 }

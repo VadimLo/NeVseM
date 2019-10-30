@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Properties;
 import java.util.stream.Stream;
 
 @SpringBootApplication
@@ -18,7 +19,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-//    @Bean
+    //    @Bean
 //    CommandLineRunner bootstrap(final UserRepository userRepository, final PasswordEncoder passwordEncoder) {
 //        return (args) -> {
 //            userRepository.save(
@@ -29,4 +30,5 @@ public class Application {
 //            userRepository.findAll().stream().map(User::toString).forEach(System.out::println);
 //        };
 //    }
+
 }

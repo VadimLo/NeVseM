@@ -29,7 +29,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @RequiredArgsConstructor
 class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private static final String[] allowedUrlsForPost = new String[]{"/auth/login","/singup/reg"};
+    private static final String[] allowedUrlsForPost = new String[]{"/auth/login","/singup/reg","/sa/registration"};
+    private static final String[] allowedUrlsForGet = new String[]{"/singup/regtoken/**"};
 
 
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
@@ -69,6 +70,7 @@ class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(final WebSecurity web) throws Exception {
         web.ignoring()
                 .antMatchers(HttpMethod.POST, allowedUrlsForPost)
+                .antMatchers(HttpMethod.GET,allowedUrlsForGet)
                 .antMatchers(HttpMethod.OPTIONS, "/**");
     }
 

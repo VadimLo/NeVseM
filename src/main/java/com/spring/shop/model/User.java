@@ -3,6 +3,7 @@ package com.spring.shop.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 
 @Entity
@@ -19,8 +20,9 @@ public class User {
     private String firstName;
     private String lastName;
     private String username;
-
-
+    @Email(message = "Email should be valid")
+    private String email;
+    private boolean isEnabled;
     private String password;
 
     @Column
@@ -29,11 +31,13 @@ public class User {
 
 
 
-    public User(String firstName, String lastName, String username, String password,final UserRole role) {
+    public User(String firstName, String lastName, String username, String password, String email,boolean isEnabled, final UserRole role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+        this.email=email;
+        this.isEnabled = isEnabled;
         this.role = role;
     }
 

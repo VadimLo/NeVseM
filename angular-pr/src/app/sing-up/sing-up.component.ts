@@ -40,6 +40,7 @@ export class SingUpComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
+      email: ['',  Validators.email],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
