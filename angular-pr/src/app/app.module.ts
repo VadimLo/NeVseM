@@ -33,7 +33,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthModule} from "./auth/auth.module";
 import {HttpModule} from "@angular/http";
 import {MDBBootstrapModule} from "angular-bootstrap-md";
-import { RegComponent } from './reg/reg.component';
 import {MultiAlertsComponent} from "./multi-alerts";
 import {AlertModule} from "./alert";
 // import { AlertComponent } from './alert/alert.component';
@@ -46,7 +45,6 @@ import {AlertModule} from "./alert";
     //HomePagesComponent,
     UsersListComponent,
     HomeComponent,
-    RegComponent,
    MultiAlertsComponent,
   ],
   imports: [

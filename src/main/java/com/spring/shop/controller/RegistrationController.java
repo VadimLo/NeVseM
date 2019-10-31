@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class RegistrationController {
     }
 
     @GetMapping("singup/regtoken/{token}")
-    void variateUser(@PathVariable String token, HttpServletResponse response) throws IOException {
+    RedirectView variateUser(@PathVariable String token, HttpServletResponse response) throws IOException {
         ConfirmationToken byConfirmationToken = confirmationTokenRepository.findByConfirmationToken(token);
 
         if (byConfirmationToken != null) {
@@ -64,7 +65,7 @@ public class RegistrationController {
             // return ResponseEntity.status(HttpStatus.CREATED).build();
         }
         //return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
-        response.sendRedirect("http://localhost:4200/login");
+        return new RedirectView("http://localhost:4200/login");
 
     }
 }

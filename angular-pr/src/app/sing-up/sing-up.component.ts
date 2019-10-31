@@ -67,13 +67,10 @@ export class SingUpComponent implements OnInit {
         data => {
 
           //this.alertService.success('Registration successful', true);
-          if (data == "INTERNAL_SERVER_ERROR") {
-            this.mes = "User already consist. Please choice another username";
 
-          } else {
             this.router.navigate(['/login']);
-            this.success("work")
-          }
+            this.success("You registered please check your email - "+this.user.email)
+
 
 
         },
