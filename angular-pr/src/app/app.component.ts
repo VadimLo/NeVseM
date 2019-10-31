@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SecurityService} from "./auth/security.service";
 import {AuthService} from "./auth/auth.service";
 import {SingUpComponent} from "./sing-up/sing-up.component";
+import {AlertService} from "./alert";
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit {
   constructor(
     private securityService: SecurityService,
     private authService: AuthService,
+    private alertService: AlertService,
 
   ) {
     this.flag=this.securityService.isLoggedIn();

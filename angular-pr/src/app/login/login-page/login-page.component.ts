@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../auth/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AlertService} from "../../alert";
 
 @Component({
   selector: 'app-login-page',
@@ -17,7 +18,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit() {
@@ -38,12 +40,33 @@ export class LoginPageComponent implements OnInit {
         data => {
           localStorage.setItem('user', JSON.stringify(data));
           this.router.navigate([this.returnUrl]);
+          this.success("You successfully login")
         },
         error => {
           this.loading = false;
-          this.errorMessage = error.json().message;
+          this.errorMessage = error;
+          this.errorMes("Incorrect username or password. Please try again.");
         }
       );
+  }
+  success(message: string) {
+    this.alertService.success(message);
+  }
+
+  errorMes(message: string) {
+    this.alertService.error(message);
+  }
+
+  info(message: string) {
+    this.alertService.info(message);
+  }
+
+  warn(message: string) {
+    this.alertService.warn(message);
+  }
+
+  clear() {
+    this.alertService.clear();
   }
 
 }

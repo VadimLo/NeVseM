@@ -20,7 +20,7 @@ import {HomeComponent} from './home/home.component';
 import {UsersListComponent} from "./users/users-list/users-list.component";
 import {UserService} from "./user.service";
 import {AuthGuard} from "./auth.guard";
-import {AlertService} from "./auth/alert.service";
+
 import {User} from "./auth/user";
 import {AuthService} from "./auth/auth.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
@@ -34,6 +34,8 @@ import {AuthModule} from "./auth/auth.module";
 import {HttpModule} from "@angular/http";
 import {MDBBootstrapModule} from "angular-bootstrap-md";
 import { RegComponent } from './reg/reg.component';
+import {MultiAlertsComponent} from "./multi-alerts";
+import {AlertModule} from "./alert";
 // import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
@@ -45,7 +47,7 @@ import { RegComponent } from './reg/reg.component';
     UsersListComponent,
     HomeComponent,
     RegComponent,
-   // AlertComponent,
+   MultiAlertsComponent,
   ],
   imports: [
     routing,
@@ -55,12 +57,13 @@ import { RegComponent } from './reg/reg.component';
     HttpClientModule,
     AuthModule,
     ReactiveFormsModule,
+    AlertModule,
     MDBBootstrapModule.forRoot(),
   ],
   providers: [
     UserService,
     AuthGuard,
-    AlertService,
+
     AuthService,
     User,
 

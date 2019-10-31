@@ -4,9 +4,10 @@ import {Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {SecurityService} from "../auth/security.service";
 import {first} from "rxjs/operators";
-import {AlertService} from "../auth/alert.service";
+
 import {User} from "../auth";
 import {any} from "codelyzer/util/function";
+import {AlertService} from "../alert";
 
 @Component({
   selector: 'app-sing-up',
@@ -70,6 +71,7 @@ export class SingUpComponent implements OnInit {
 
           }else{
             this.router.navigate(['/login']);
+            this.success("work")
           }
 
 
@@ -77,6 +79,25 @@ export class SingUpComponent implements OnInit {
 
         );
 
+  }
+  success(message: string) {
+    this.alertService.success(message);
+  }
+
+  errorMes(message: string) {
+    this.alertService.error(message);
+  }
+
+  info(message: string) {
+    this.alertService.info(message);
+  }
+
+  warn(message: string) {
+    this.alertService.warn(message);
+  }
+
+  clear() {
+    this.alertService.clear();
   }
 
 }

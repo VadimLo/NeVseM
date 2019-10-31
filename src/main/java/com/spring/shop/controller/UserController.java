@@ -77,7 +77,6 @@ public class UserController {
 
     @GetMapping("singup/regtoken/{token}")
     void variateUser(@PathVariable String token) {
-        System.out.println("hi daun");
         ConfirmationToken byConfirmationToken = confirmationTokenRepository.findByConfirmationToken(token);
 
         if (byConfirmationToken != null) {
