@@ -22,7 +22,7 @@ export class UserService {
     return this.authHttp.delete(`${environment.serverUrl}users/${id}`,);
   }
   register(user: User){
-    return this.http.post<string>(`${environment.serverUrl}singup/reg`,user);
+    return this.http.post(`${environment.serverUrl}singup/reg`,user,{  responseType: 'text'});
   }
 
 }

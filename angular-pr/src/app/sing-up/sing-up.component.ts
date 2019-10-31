@@ -18,7 +18,8 @@ export class SingUpComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
-  mes:string;
+  mes: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -41,7 +42,7 @@ export class SingUpComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
-      email: ['',  Validators.email],
+      email: ['', Validators.email],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
@@ -57,29 +58,33 @@ export class SingUpComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.user =this.registerForm.value;
+    this.user = this.registerForm.value;
     this.loading = true;
-    console.log( this.user);
+    console.log(this.user);
     this.userService.register(this.user)
     // .pipe(first())
       .subscribe(
         data => {
 
           //this.alertService.success('Registration successful', true);
-          if (data=="INTERNAL_SERVER_ERROR"){
-            this.mes ="User already consist. Please choice another username";
+          if (data == "INTERNAL_SERVER_ERROR") {
+            this.mes = "User already consist. Please choice another username";
 
-          }else{
+          } else {
             this.router.navigate(['/login']);
             this.success("work")
           }
 
 
+        },
+        error => {
+          console.log(error);
+          this.errorMes(error.error);
         }
-
-        );
+      );
 
   }
+
   success(message: string) {
     this.alertService.success(message);
   }
