@@ -1,0 +1,17 @@
+.square {
+  width: 100px;
+  height: 100px;
+  background: red;
+  z-index: 1;
+}
+img {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.df{
+  width: 500px;
+  height: 500px;
+}

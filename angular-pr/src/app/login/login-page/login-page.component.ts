@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {AuthService} from "../../auth/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../alert";
+import htmlToImage from 'html-to-image';
 
 @Component({
   selector: 'app-login-page',
@@ -9,11 +10,13 @@ import {AlertService} from "../../alert";
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-
+  netImage:any = "../assets/qw.jpg";
   model: any = {};
   loading = false;
   returnUrl: string;
   errorMessage: string;
+  img:any;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -67,6 +70,20 @@ export class LoginPageComponent implements OnInit {
 
   clear() {
     this.alertService.clear();
+  }
+
+  fun(){
+
+
+    htmlToImage.toPng(document.getElementById('screen')).then(dataUrl=> {
+
+       this.img = new Image();
+      this.img.src = dataUrl;
+      document.getElementById("screensh").appendChild(this.img);
+    })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
   }
 
 }

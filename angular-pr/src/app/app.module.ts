@@ -35,6 +35,7 @@ import {HttpModule} from "@angular/http";
 import {MDBBootstrapModule} from "angular-bootstrap-md";
 import {MultiAlertsComponent} from "./multi-alerts";
 import {AlertModule} from "./alert";
+import {AngularDraggableModule} from "angular2-draggable";
 // import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
@@ -57,6 +58,7 @@ import {AlertModule} from "./alert";
     ReactiveFormsModule,
     AlertModule,
     MDBBootstrapModule.forRoot(),
+    AngularDraggableModule,
   ],
   providers: [
     UserService,
