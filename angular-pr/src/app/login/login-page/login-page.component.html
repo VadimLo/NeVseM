@@ -1,4 +1,4 @@
-<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center" >
   <div class="col-md-3 col-md-offset-3">
 
     <div *ngIf="errorMessage">
@@ -10,19 +10,19 @@
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
         <label for="username">Username</label>
         <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel"
-          required />
+               required/>
         <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
       </div>
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
         <label for="password">Password</label>
         <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel"
-          required />
+               required/>
         <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
       </div>
       <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary">Login</button>
         <img *ngIf="loading"
-          src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
       </div>
 
     </form>
@@ -31,21 +31,70 @@
 
   </div>
 </div>
-<button class="btn btn-primary" (click)="fun()">screen mb xz</button>
+<button class="btn btn-primary" (click)="renderImage()">screen mb xz</button>
+<button class="btn btn-primary" (click)="removeImage()">remove img</button>
 <div id="screen">
-  <div class="drag-block df" [ngStyle]="{background:'url(../assets/qw.jpg)'}" ngDraggable>
+  <div >
+    <div class="layout" (click)="inBounds = !inBounds">
+      <img class="square drag-boundary" [src]="netImageTs" [draggable]="false"
+           [ngClass]="{ 'top-b': !edge?.top, 'bottom-b': !edge?.bottom, 'left-b': !edge?.left, 'right-b': !edge?.right }"
+           #myBounds/>
 
-    <!--    <img [src]="netImage"  draggable="false"/>-->
+    </div>
+    <div class="layout" >
 
+      <img class="square l2" [src]="netImageMask" [draggable]="false"/>
+    </div>
+
+    <div>
+      <img id="mainIm" class="ng-draggable inner-img l3 drag-block" (edge)="checkEdge($event)"
+           [bounds]="myBounds"
+           [inBounds]="inBounds"
+           [src]="netImage"
+           [ngDraggable]="drag"
+           [draggable]="false"
+
+
+           mwlResizable
+           [enableGhostResize]="true"
+           resizeCursorPrecision="10"
+           [resizeEdges]="{bottom: true, right: true, top: false, left: false}"
+
+           (resizeStart)="startResize($event)"
+           (resizeEnd)="onResizeEnd($event)"
+           [style.height.px]="height"
+           [style.width.px]="width"
+      />
+    </div>
   </div>
-  <div class="drag-block" ngDraggable>
-    <div class="square">
 
+
+  <div class="center">
+    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+                   (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+      <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+        Optional custom content that replaces the the entire default content.
+        <button type="button" (click)="openFileSelector()">Browse Files</button>
+      </ng-template>
+    </ngx-file-drop>
+    <div class="upload-table">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+        </thead>
+        <tbody class="upload-name-style">
+        <tr *ngFor="let item of files; let i=index">
+          <td><strong>{{ item.relativePath }}</strong></td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
 </div>
-<div class="df"  id="screensh">
+<div class="" id="screensh">
   <img src="" alt="">
 </div>
 

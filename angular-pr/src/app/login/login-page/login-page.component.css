@@ -1,17 +1,81 @@
 .square {
-  width: 100px;
-  height: 100px;
-  background: red;
-  z-index: 1;
+  width: 600px;
+  height: 600px;
+
 }
-img {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
+/*img {*/
+/*  -webkit-user-select: none;*/
+/*  -khtml-user-select: none;*/
+/*  -moz-user-select: none;*/
+/*  -o-user-select: none;*/
+/*  user-select: none;*/
+/*}*/
+
+img::-moz-selection {
+  background-color: transparent;
+  color: #000;
 }
-.df{
-  width: 500px;
-  height: 500px;
+
+img::selection {
+  background-color: transparent;
+  color: #000;
 }
+/*.df{*/
+/*  width: 500px;*/
+/*  height: 500px;*/
+/*}*/
+.ng-draggable {
+  cursor: grab;
+}
+
+.ng-dragging {
+  cursor: grabbing;
+}
+mwlResizable {
+  box-sizing: border-box;
+}
+.inner-img{
+  opacity: 50%;
+}
+.layout img {
+  pointer-events: none;
+  top: 100px;
+  left: 100px;
+  position: relative;
+
+
+}
+.l1{
+  z-index: 0;
+}
+.l2{
+  z-index: 3;
+  margin-top: -625px;
+}
+.l3{
+  z-index: 2;
+}
+/*#outer {*/
+/*  height: 200px;*/
+/*  width: 200px;*/
+/*  border: 1px solid red;*/
+/*  display: table-cell;*/
+/*  vertical-align: bottom;*/
+/*}*/
+
+/*#inner {*/
+/*  border: 1px solid green;*/
+/*  height: 50px;*/
+/*}*/
+.uploadfilecontainer {
+  background-color: aquamarine;
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  height: 200px;
+  width: 80%;
+  margin: 20px auto;
+  border: 2px dashed #1C8ADB;
+  border-radius: 10px;
+}
+

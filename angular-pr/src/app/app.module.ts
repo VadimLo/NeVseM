@@ -36,6 +36,9 @@ import {MDBBootstrapModule} from "angular-bootstrap-md";
 import {MultiAlertsComponent} from "./multi-alerts";
 import {AlertModule} from "./alert";
 import {AngularDraggableModule} from "angular2-draggable";
+import {ResizableModule} from "angular-resizable-element";
+import {NgxFileDropModule} from "ngx-file-drop";
+
 // import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
@@ -59,6 +62,9 @@ import {AngularDraggableModule} from "angular2-draggable";
     AlertModule,
     MDBBootstrapModule.forRoot(),
     AngularDraggableModule,
+    ResizableModule,
+    NgxFileDropModule
+
   ],
   providers: [
     UserService,
