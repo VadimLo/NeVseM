@@ -1,4 +1,4 @@
-<div class="row d-flex justify-content-center" >
+<div class="row d-flex justify-content-center">
   <div class="col-md-3 col-md-offset-3">
 
     <div *ngIf="errorMessage">
@@ -33,29 +33,37 @@
 </div>
 <button class="btn btn-primary" (click)="renderImage()">screen mb xz</button>
 <button class="btn btn-primary" (click)="removeImage()">remove img</button>
-<div id="screen">
-  <div >
-    <div class="layout" (click)="inBounds = !inBounds">
-      <img class="square drag-boundary" [src]="netImageTs" [draggable]="false"
-           [ngClass]="{ 'top-b': !edge?.top, 'bottom-b': !edge?.bottom, 'left-b': !edge?.left, 'right-b': !edge?.right }"
-           #myBounds/>
 
-    </div>
-    <div class="layout" >
 
-      <img class="square l2" [src]="netImageMask" [draggable]="false"/>
+<div class="mainContainer">
+  <div id="screen" class="lpart">
+    <div>
+      <div class="layout " (click)="inBounds = !inBounds">
+        <img class="square " [src]="netImageTs" [draggable]="false"
+             [ngClass]="{ 'top-b': !edge?.top, 'bottom-b': !edge?.bottom, 'left-b': !edge?.left, 'right-b': !edge?.right }"
+             #myBounds/>
+
+
+      </div>
+      <div class="layout">
+
+        <img class="square l2" [src]="netImageMask" [draggable]="false"/>
+
+      </div>
     </div>
 
     <div>
-      <img id="mainIm" class="ng-draggable inner-img l3 drag-block" (edge)="checkEdge($event)"
+      <img id="mainIm" [src]="imgURL"    *ngIf="imgURL"
+           class="ng-draggable inner-img l3 drag-block" (edge)="checkEdge($event)"
            [bounds]="myBounds"
            [inBounds]="inBounds"
-           [src]="netImage"
+
            [ngDraggable]="drag"
            [draggable]="false"
 
 
            mwlResizable
+
            [enableGhostResize]="true"
            resizeCursorPrecision="10"
            [resizeEdges]="{bottom: true, right: true, top: false, left: false}"
@@ -65,7 +73,9 @@
            [style.height.px]="height"
            [style.width.px]="width"
       />
+
     </div>
+
   </div>
 
 
@@ -95,6 +105,7 @@
 
 </div>
 <div class="" id="screensh">
-  <img src="" alt="">
+  <img [src]="imgURL"  alt=""  *ngIf="imgURL">
 </div>
+
 

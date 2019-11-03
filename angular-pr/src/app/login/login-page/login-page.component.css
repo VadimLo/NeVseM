@@ -1,6 +1,7 @@
 .square {
   width: 600px;
   height: 600px;
+  overflow: hidden;
 
 }
 /*img {*/
@@ -38,9 +39,8 @@ mwlResizable {
   opacity: 50%;
 }
 .layout img {
-  pointer-events: none;
-  top: 100px;
-  left: 100px;
+
+
   position: relative;
 
 
@@ -51,6 +51,9 @@ mwlResizable {
 .l2{
   z-index: 3;
   margin-top: -625px;
+  overflow: hidden;
+  pointer-events: none;
+
 }
 .l3{
   z-index: 2;
@@ -78,4 +81,13 @@ mwlResizable {
   border: 2px dashed #1C8ADB;
   border-radius: 10px;
 }
-
+.lpart{
+  width: 50%;
+}
+.rpart{
+  width: 50%;
+}
+.mainContainer{
+  display: flex;
+  overflow: hidden;
+}

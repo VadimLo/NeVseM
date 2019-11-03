@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {AuthService} from "../../auth/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../alert";
@@ -7,23 +7,25 @@ import {ResizeEvent} from "angular-resizable-element";
 import {FileSystemDirectoryEntry, FileSystemFileEntry, NgxFileDropEntry} from "ngx-file-drop";
 
 declare const require: any;
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  netImage:any = "../assets/qw.jpg";
-  netImageTs:any = "../assets/tshirt-alfa.png";
-  netImageMask:any = "../assets/mask.png";
+  netImage: any = "../assets/qw.jpg";
+  netImageTs: any = "../assets/tshirt-alfa.png";
+  netImageMask: any = "../assets/mask.png";
+  upImage: any ;
   model: any = {};
   loading = false;
   returnUrl: string;
   errorMessage: string;
-  img:any;
+  img: any;
   height: number = 400;
-  width:number = 400;
-  drag:boolean=true;
+  width: number = 400;
+  drag: boolean = true;
 
   inBounds = true;
   edge = {
@@ -40,12 +42,14 @@ export class LoginPageComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private alertService: AlertService,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-  singUpRedirect(){
+
+  singUpRedirect() {
     this.router.navigate(['/singup']);
   }
 
@@ -69,6 +73,7 @@ export class LoginPageComponent implements OnInit {
         }
       );
   }
+
   success(message: string) {
     this.alertService.success(message);
   }
@@ -89,12 +94,12 @@ export class LoginPageComponent implements OnInit {
     this.alertService.clear();
   }
 
-  renderImage(){
+  renderImage() {
 
 
-    htmlToImage.toPng(document.getElementById('screen')).then(dataUrl=> {
+    htmlToImage.toPng(document.getElementById('screen')).then(dataUrl => {
 
-       this.img = new Image();
+      this.img = new Image();
       this.img.src = dataUrl;
       document.getElementById("screensh").appendChild(this.img);
     })
@@ -102,11 +107,12 @@ export class LoginPageComponent implements OnInit {
         console.error('oops, something went wrong!', error);
       });
   }
-  onDrag(event:DragEvent){
-    if(event){
+
+  onDrag(event: DragEvent) {
+    if (event) {
       console.log("Two events")
 
-    }else{
+    } else {
       console.log("one event or 0")
     }
 
@@ -114,35 +120,51 @@ export class LoginPageComponent implements OnInit {
 
   onResizeEnd(event: ResizeEvent): void {
     if (event) {
-      this.drag=true;
+      this.drag = true;
       //console.log(event);
       if (event.rectangle.height != null) {
         this.height = event.rectangle.height;
         this.width = event.rectangle.width;
 
+        if (this.height > 600) {
+          this.height = 600
+        }
+        if (this.width > 600) {
+          this.width = 600
+        }
       }
     }
   }
 
-  startResize(event:ResizeEvent){
-    this.drag=false
+  startResize(event: ResizeEvent) {
+    this.drag = false
 
   }
+
   checkEdge(event) {
     this.edge = event;
     console.log('edge:', event);
   }
-  removeImage(){
+
+  removeImage() {
     document.getElementById("mainIm").remove();
   }
 
 
-  //uploadfile
+  // validResize() {
+  //  if(this.height>600 || this.width>600){
+  //    return function (resize: ResizeEvent) {return false };
+  //  }else{
+  //    return function (resize: ResizeEvent) {return true };
+  //  }
 
+  imgURL: any;
 
   public files: NgxFileDropEntry[] = [];
-
-  public dropped(files: NgxFileDropEntry[]) {
+  // preview:any;
+  // reader:any;
+  public
+  dropped(files:NgxFileDropEntry[]){
     this.files = files;
     for (const droppedFile of files) {
 
@@ -151,9 +173,21 @@ export class LoginPageComponent implements OnInit {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
 
+          var reader = new FileReader();
+          var preview = new Image();
+          reader.readAsDataURL(file);
+          //preview = document.querySelector("img");
+          reader.onload = (_event) => {
+            this.imgURL = reader.result;
+          };
+
           // Here you can access the real file
           console.log(droppedFile.relativePath, file);
+          // this.upImage = new Image();
+           //preview.src ="pic.jpg";
+           this.upImage = file;
 
+          //document.getElementById("screensh").appendChild(preview.);
           /**
            // You could upload it like this:
            const formData = new FormData()
@@ -179,12 +213,35 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  public fileOver(event){
+  // imageDropped($event: UploadEvent) {
+  //   const droppedFile = $event.files[0];
+  //   const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+  //   const reader = new FileReader();
+  //
+  //   fileEntry.file(file => {
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => {
+  //       this.imageUrl = reader.result;
+  //     };
+  //   });
+  // }
+
+  fileOver(event)
+  {
     console.log(event);
   }
 
-  public fileLeave(event){
+
+  fileLeave(event)
+  {
     console.log(event);
   }
 
 }
+
+
+
+
+//uploadfile
+
+
