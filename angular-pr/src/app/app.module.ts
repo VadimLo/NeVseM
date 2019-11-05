@@ -38,7 +38,9 @@ import {AlertModule} from "./alert";
 import {AngularDraggableModule} from "angular2-draggable";
 import {ResizableModule} from "angular-resizable-element";
 import {NgxFileDropModule} from "ngx-file-drop";
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserPageComponent } from './user-page/user-page.component';
+import { NavbarComponent } from './navbar/navbar.component';
 // import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
@@ -50,6 +52,8 @@ import {NgxFileDropModule} from "ngx-file-drop";
     UsersListComponent,
     HomeComponent,
    MultiAlertsComponent,
+   UserPageComponent,
+   NavbarComponent,
   ],
   imports: [
     routing,
@@ -63,8 +67,8 @@ import {NgxFileDropModule} from "ngx-file-drop";
     MDBBootstrapModule.forRoot(),
     AngularDraggableModule,
     ResizableModule,
-    NgxFileDropModule
-
+    NgxFileDropModule,
+    BrowserAnimationsModule
   ],
   providers: [
     UserService,

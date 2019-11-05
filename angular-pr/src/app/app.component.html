@@ -1,84 +1,4 @@
-<!--Navbar-->
 
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" *ngIf="isLog()">
-
-  <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
-
-  <!-- Collapsible content -->
-  <links>
-
-    <!-- Links -->
-    <ul class="navbar-nav ml-auto">
-      <!--      <li class="nav-item active">-->
-      <!--        <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> Contact<span class="sr-only">(current)</span></a>-->
-      <!--      </li>-->
-
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link waves-light" *ngIf="isLog()" mdbWavesEffect>-->
-<!--          <mdb-icon fas icon="cog"></mdb-icon>-->
-<!--          Settings</a>-->
-<!--      </li>-->
-
-      <!-- Dropdown -->
-
-        <li class="nav-item dropdown"  mdbWavesEffect dropdown>
-          <!--        <button>-->
-          <a  dropdownToggle type="button" class="nav-link dropdown-toggle waves-light">
-            <mdb-icon fas icon="user"></mdb-icon >
-            Profile<span class="caret"></span></a>
-          <!--        </button>-->
-
-          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/login" (click)="logout()">Log out</a>
-          </div>
-
-
-        </li>
-
-    </ul>
-    <!-- Links -->
-  </links>
-
-  <!-- Collapsible content -->
-
-</mdb-navbar>
-
-
-
-<!--Navbar-->
-
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" *ngIf="!isLog()">
-
-  <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
-
-  <!-- Collapsible content -->
-  <links>
-
-
-    <ul class="navbar-nav ml-auto">
-
-      <li mdbWavesEffect dropdown class="nav-item">
-        <a class="nav-link waves-light" routerLink="login" mdbWavesEffect>
-          <mdb-icon fas icon="cog"></mdb-icon>
-          Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" routerLink="singup"  mdbWavesEffect>
-          <mdb-icon fas icon="cog"></mdb-icon>
-          Sing Up</a>
-      </li>
-
-
-    </ul>
-    <!-- Links -->
-  </links>
-
-  <!-- Collapsible content -->
-
-</mdb-navbar>
 
 <!--второй-->
 
@@ -149,5 +69,6 @@
 <!--  &lt;!&ndash; Collapsible content &ndash;&gt;-->
 
 <!--</mdb-navbar>-->
+<app-navbar></app-navbar>
 <alert></alert>
 <router-outlet></router-outlet>

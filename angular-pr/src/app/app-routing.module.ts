@@ -6,6 +6,7 @@ import {LoginPageComponent} from "./login/login-page/login-page.component";
 import {AuthGuard} from "./auth.guard";
 import {UsersListComponent} from "./users/users-list/users-list.component";
 import {SingUpComponent} from "./sing-up/sing-up.component";
+import {UserPageComponent} from "./user-page/user-page.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path:"singup",
     component: SingUpComponent
+  },
+  {
+    path:"page",
+    component:UserPageComponent
   },
   // {
   //   path:'home',

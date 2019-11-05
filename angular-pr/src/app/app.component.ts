@@ -11,36 +11,20 @@ import {AlertService} from "./alert";
 })
 export class AppComponent implements OnInit {
 
-  flag: boolean;
 
   constructor(
     private securityService: SecurityService,
-    private authService: AuthService,
-    private alertService: AlertService,
 
   ) {
-    this.flag=this.securityService.isLoggedIn();
-    console.log(this.securityService.isLoggedIn());
-  }
-
-  isLog() {
-
-    return this.securityService.isLoggedIn();
 
   }
-  unHidden(){
-    this.flag=false
-  }
+
+
   ngOnInit() {
 
   }
 
-  logout() {
-    this.authService.logout();
-    this.flag=true;
 
-
-  }
 
 
 
