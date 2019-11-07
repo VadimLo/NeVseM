@@ -1,15 +1,21 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from "@angular/http";
 import { environment } from '../../environments/environment';
-import {AuthConfigConsts, AuthHttp} from "angular2-jwt";
+import {AuthConfigConsts, AuthHttp, JwtHelper} from "angular2-jwt";
 import {Router} from "@angular/router";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
+import {Subject} from "rxjs";
 
 @Injectable()
 export class AuthService {
+  //tokenEndpoint = environment.token_endpoint;
 
+  lastUrl: string;
+  jwtHelper: JwtHelper = new JwtHelper();
   constructor(private http: Http, private authHttp: AuthHttp, private router: Router) {
+
+
   }
 
   login(username: string, password: string) {
@@ -29,6 +35,8 @@ export class AuthService {
         localStorage.setItem(AuthConfigConsts.DEFAULT_TOKEN_NAME, token.token);
       });
   }
+
+
 
   logout() {
     localStorage.removeItem(AuthConfigConsts.DEFAULT_TOKEN_NAME);

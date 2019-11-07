@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.List;
 
 
 @Entity
@@ -24,6 +25,8 @@ public class User {
     private String email;
     private boolean isEnabled;
     private String password;
+
+    private List<TShirt> tShirts;
 
     @Column
     @Enumerated(EnumType.STRING)

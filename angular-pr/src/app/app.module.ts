@@ -42,7 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserPageComponent } from './user-page/user-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 // import { AlertComponent } from './alert/alert.component';
-
+import * as $ from "jquery";
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +54,7 @@ import { NavbarComponent } from './navbar/navbar.component';
    MultiAlertsComponent,
    UserPageComponent,
    NavbarComponent,
+
   ],
   imports: [
     routing,
@@ -68,7 +69,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AngularDraggableModule,
     ResizableModule,
     NgxFileDropModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
   ],
   providers: [
     UserService,

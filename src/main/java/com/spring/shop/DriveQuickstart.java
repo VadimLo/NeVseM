@@ -1,10 +1,13 @@
+
+package com.spring.shop;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.googleapis.media.MediaHttpUploader;
+import com.google.api.client.http.AbstractInputStreamContent;
+import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.FileContent;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
@@ -15,16 +18,16 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 
+import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class DriveQuickstart {
+public class  DriveQuickstart {
     private static final String APPLICATION_NAME = "Quickstart";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
@@ -72,7 +75,7 @@ public class DriveQuickstart {
         // Print the names and IDs for up to 10 files.
 
         File fileMetadata = new File();
-        fileMetadata.setName("photo.jpg");
+        fileMetadata.setName("photo12.jpg");
         java.io.File filePath = new java.io.File("D:\\Java\\Shop Online\\src\\main\\resources\\pic.jpg");
         FileContent mediaContent = new FileContent("image/jpg", filePath);
         File file2 =
@@ -98,20 +101,25 @@ public class DriveQuickstart {
             }
         }
     }
-//    private static File uploadFile(boolean useDirectUpload) throws IOException {
-//        File fileMetadata = new File();
-//        fileMetadata.setName("photo.jpg");
-//        java.io.File filePath = new java.io.File("pic.jpg");
-//        FileContent mediaContent = new FileContent("image/jpg", filePath);
-//        File file2 =
-//                service.
-//                        files().
-//                        create(fileMetadata, mediaContent)
-//                        .setFields("id")
-//                        .execute();
-//        System.out.println("File ID: " + file2.getId());
-//
-//        return insert.execute();
-//    }
+    public static String uploadImage(byte[] file) throws GeneralSecurityException, IOException {
+        // Print the names and IDs for up to 10 files.
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+
+        File fileMetadata = new File();
+        fileMetadata.setName("rnd.png");
+        ByteArrayContent content = new ByteArrayContent("image/png", file);
+        File file2 =
+                service.
+                        files().
+                        create(fileMetadata, content)
+                        .setFields("id")
+                        .execute();
+        System.out.println("File ID: " + file2.getId());
+        return file2.getId();
+    }
 
 }
