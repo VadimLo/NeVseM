@@ -11,7 +11,7 @@ public class UserListTransformer {
 
     public UserListDto makeDto(final User user) {
         UserListDto dto = new UserListDto();
-        dto.setId(user.getId());
+        dto.setId(user.getUserId());
         dto.setUsername(user.getUsername());
         dto.setRole(user.getRole().name());
 

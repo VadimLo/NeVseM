@@ -21,7 +21,7 @@ public class JwtUserDetails implements UserDetails {
     private Set<GrantedAuthority> authorities;
 
     public JwtUserDetails(User user) {
-        this.id = user.getId();
+        this.id = user.getUserId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.authorities = new HashSet<>();

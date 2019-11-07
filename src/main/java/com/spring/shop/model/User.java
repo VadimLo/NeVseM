@@ -17,7 +17,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long userId;
     private String firstName;
     private String lastName;
     private String username;
@@ -26,15 +26,17 @@ public class User {
     private boolean isEnabled;
     private String password;
 
-    private List<TShirt> tShirts;
+
 
     @Column
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<TShirt> tShirts;
 
 
-    public User(String firstName, String lastName, String username, String password, String email,boolean isEnabled, final UserRole role) {
+    public User(String firstName, String lastName, String username, String password, String email,boolean isEnabled, final UserRole role,  List<TShirt> tShirts) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -42,9 +44,8 @@ public class User {
         this.email=email;
         this.isEnabled = isEnabled;
         this.role = role;
+        this.tShirts = tShirts;
     }
-
-
 
 
 }

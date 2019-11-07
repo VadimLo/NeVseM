@@ -1,6 +1,6 @@
 
 <div class="container preview"   data-spy="scroll" data-target=".subnav" data-offset="80">
-  <section id="typography">
+  <section id="typography" class="selection">
     <div class="page-header">
       <h1>Customize T-Shirt</h1>
     </div>
@@ -161,9 +161,11 @@
 
   </section>
 </div><!-- /container -->
-
+<div id="fade" class="fadeing">
+  <button class=" btn-danger fade-but" (click)="flip()">Create you own design</button>
+</div>
 <!-- Footer ================================================== -->
-<button (click)="flip()">sdvsdv</button>
+
 <button (click)="renderImage1()">render</button>
 <div class="" id="screensh">
   <img [src]=""  alt=""  >

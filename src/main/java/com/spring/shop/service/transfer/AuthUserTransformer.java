@@ -18,7 +18,7 @@ public class AuthUserTransformer {
     public AuthUserDto makeDto(final User user) {
         AuthUserDto authUserDto = new AuthUserDto();
 
-        authUserDto.setId(user.getId());
+        authUserDto.setId(user.getUserId());
         authUserDto.setUsername(user.getUsername());
         authUserDto.setRole(user.getRole().name());
 

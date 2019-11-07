@@ -55,6 +55,7 @@ export class UserPageComponent implements OnInit {
     this.loadScript5();
     this.loadScript3();
     //this.loadScript7();
+    document.getElementById("fade").remove();
   }
   ngOnInit() {
 

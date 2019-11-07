@@ -2,7 +2,9 @@ package com.spring.shop.controller;
 
 import com.spring.shop.DriveQuickstart;
 import com.spring.shop.model.TShirt;
+import com.spring.shop.model.User;
 import com.spring.shop.repository.TShirtRepository;
+import com.spring.shop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
@@ -27,6 +29,7 @@ public class ImageController {
 
 
     private final TShirtRepository tShirtRepository;
+    private final UserRepository userRepository;
 
     @PostMapping("/img/hi")
     @ResponseStatus(value = HttpStatus.OK)
@@ -35,7 +38,13 @@ public class ImageController {
         String base64Image = file.split(",")[1];
         byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
         BufferedImage img = ImageIO.read(new ByteArrayInputStream(imageBytes));
+
+
         TShirt tShirt = new TShirt();
+        tShirt.setUser(userRepository.findFirstByUsername("p"));
+        User user = userRepository.findFirstByUsername("p");
+
+        System.out.println(user.getTShirts());
         tShirt.setDriveId(DriveQuickstart.uploadImage(imageBytes));
         tShirtRepository.save(tShirt);
 
