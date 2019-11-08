@@ -3,6 +3,7 @@ import com.google.api.client.http.FileContent;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.common.annotations.VisibleForTesting;
+import com.spring.shop.DriveQuickstart;
 import org.apache.commons.lang3.builder.ToStringExclude;
 import org.junit.Test;
 
@@ -24,6 +25,6 @@ public class test {
                 .setFields("id")
                 .execute();
         System.out.println("File ID: " + file.getId());
-
+        //DriveQuickstart.uploadImage()
     }
 }

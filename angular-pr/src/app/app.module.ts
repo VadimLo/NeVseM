@@ -11,7 +11,7 @@
 //
 // import {AppComponent} from './app.component';
 // import {AuthModule} from "./auth/auth.module";
- import {routing} from './app-routing.module';
+import {routing} from './app-routing.module';
 // import {SingUpComponent} from './sing-up/sing-up.component';
 // import {LoginPageComponent} from "./login/login-page/login-page.component";
 
@@ -38,17 +38,11 @@ import {AlertModule} from "./alert";
 import {AngularDraggableModule} from "angular2-draggable";
 import {ResizableModule} from "angular-resizable-element";
 import {NgxFileDropModule} from "ngx-file-drop";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserPageComponent } from './user-page/user-page.component';
-import { NavbarComponent } from './navbar/navbar.component';
-// import { AlertComponent } from './alert/alert.component';
-import * as $ from "jquery";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatRadioModule} from "@angular/material/radio";
-import {MatSelectModule} from "@angular/material/select";
-import {MatIconModule} from "@angular/material/icon";
-import {MatInputModule} from "@angular/material/input";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {UserPageComponent} from './user-page/user-page.component';
+import {NavbarComponent} from './navbar/navbar.component';
+import {TShirt} from './auth/tshirt'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,9 +51,9 @@ import {MatInputModule} from "@angular/material/input";
     //HomePagesComponent,
     UsersListComponent,
     HomeComponent,
-   MultiAlertsComponent,
-   UserPageComponent,
-   NavbarComponent,
+    MultiAlertsComponent,
+    UserPageComponent,
+    NavbarComponent,
 
   ],
   imports: [
@@ -84,6 +78,7 @@ import {MatInputModule} from "@angular/material/input";
 
     AuthService,
     User,
+    TShirt,
 
   ],
   bootstrap: [AppComponent,]

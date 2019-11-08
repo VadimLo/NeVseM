@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AuthUserDto implements Dto {
-    private long id;
+    private long userId;
     private String username;
     private String role;
 }

@@ -216,9 +216,9 @@
           <select class="browser-default custom-select mb-4"  formControlName="style"
                   [ngClass]="{ 'is-invalid': submitted && f.style.errors }">
             <option selected>Open this select menu</option>
-            <option value="1">Sex</option>
-            <option value="2">Funny</option>
-            <option value="3">Politics</option>
+            <option value="Sex">Sex</option>
+            <option value="Funny">Funny</option>
+            <option value="Politics">Politics</option>
           </select>
             <div *ngIf="submitted && f.style.errors" class="invalid-feedback">
               <div *ngIf="f.style.errors.required">Style is required</div>

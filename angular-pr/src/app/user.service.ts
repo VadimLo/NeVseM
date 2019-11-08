@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import {User} from "./auth";
 import {Observable} from "rxjs";
+import {TShirt} from "./auth/tshirt";
 
 @Injectable()
 export class UserService {
@@ -25,12 +26,9 @@ export class UserService {
   register(user: User){
     return this.http.post(`${environment.serverUrl}singup/reg`,user,{  responseType: 'text'});
   }
-  saveImg(img: any){
-    const formData = new FormData();
+  saveImg(tshirt: TShirt){
 
-    formData.append('file', img);
-
-    return this.authHttp.post(`${environment.serverUrl}img/hi`,img).map(res => res.json());
+    return this.authHttp.post(`${environment.serverUrl}img/hi`,tshirt).map(res => res.json());
   }
 
 }

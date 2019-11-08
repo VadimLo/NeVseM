@@ -16,6 +16,8 @@ import {UserService} from "../user.service";
 import {AuthService} from "../auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
+import {TShirt} from "../auth/tshirt";
+
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
@@ -46,7 +48,8 @@ export class UserPageComponent implements OnInit {
 
   constructor(private userService: UserService,
               private authService: AuthService,
-              private formBuilder: FormBuilder,) {
+              private formBuilder: FormBuilder,
+              private tshirt: TShirt) {
     this.loadScript();
 
 
@@ -66,6 +69,23 @@ export class UserPageComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
+    this.tshirt = this.registerForm.value;
+    htmlToImage.toPng(document.getElementById('shirtDiv')).then(dataUrl => {
+      console.log(dataUrl);
+      this.img = new Image();
+      this.img.src = dataUrl;
+      document.getElementById("screensh").appendChild(this.img);
+      this.tshirt.image=dataUrl;
+      console.log(this.tshirt.image+" after add");
+      this.tshirt.user=JSON.parse(localStorage.getItem('user'));
+      console.log(this.tshirt);
+      this.userService.saveImg(this.tshirt).subscribe();
+
+    })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
+
 
 
   }
@@ -90,26 +110,25 @@ export class UserPageComponent implements OnInit {
       name: ['', Validators.required],
       tags: ['', Validators.required],
       style: ['', Validators.required],
-       description: ['', Validators.required],
-      // password: ['', [Validators.required, Validators.minLength(6)]]
+      description: ['', Validators.required],
+
     });
 
   }
 
   renderImage1() {
-
-
-    htmlToImage.toPng(document.getElementById('shirtDiv')).then(dataUrl => {
-      console.log(dataUrl);
-      this.img = new Image();
-      this.img.src = dataUrl;
-      document.getElementById("screensh").appendChild(this.img);
-      this.userService.saveImg(dataUrl).subscribe();
-    })
-      .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-      });
-
+    // htmlToImage.toPng(document.getElementById('shirtDiv')).then(dataUrl => {
+    //   console.log(dataUrl);
+    //   this.img = new Image();
+    //   this.img.src = dataUrl;
+    //   document.getElementById("screensh").appendChild(this.img);
+    //   this.tshirt.image=dataUrl;
+    //
+    // })
+    //   .catch(function (error) {
+    //     console.error('oops, something went wrong!', error);
+    //   });
+    console.log(localStorage.getItem('user'));
   }
 
 

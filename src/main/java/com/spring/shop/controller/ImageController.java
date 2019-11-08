@@ -24,7 +24,7 @@ import javax.imageio.ImageIO;
 
 @RestController
 @RequiredArgsConstructor
-
+@RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ImageController {
 
 
@@ -33,19 +33,17 @@ public class ImageController {
 
     @PostMapping("/img/hi")
     @ResponseStatus(value = HttpStatus.OK)
-    public void getUsers(@RequestBody() String file) throws IOException, GeneralSecurityException {
-       System.out.println(file);
-        String base64Image = file.split(",")[1];
+    public void getUsers(@RequestBody TShirt tShirt) throws IOException, GeneralSecurityException {
+       //System.out.println(file);
+        String base64Image = tShirt.getImage().split(",")[1];
         byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
-        BufferedImage img = ImageIO.read(new ByteArrayInputStream(imageBytes));
 
 
-        TShirt tShirt = new TShirt();
-        tShirt.setUser(userRepository.findFirstByUsername("p"));
-        User user = userRepository.findFirstByUsername("p");
 
-        System.out.println(user.getTShirts());
-        tShirt.setDriveId(DriveQuickstart.uploadImage(imageBytes));
+
+
+        //System.out.println(tShirt.getUser().getTShirts());
+        tShirt.setImage(DriveQuickstart.uploadImage(imageBytes));
         tShirtRepository.save(tShirt);
 
     }
