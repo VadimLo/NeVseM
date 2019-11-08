@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as $ from 'jquery';
 
 
@@ -14,6 +14,7 @@ import htmlToImage from "html-to-image";
 import {FileSystemDirectoryEntry, FileSystemFileEntry, NgxFileDropEntry} from "ngx-file-drop";
 import {UserService} from "../user.service";
 import {AuthService} from "../auth/auth.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-user-page',
@@ -29,26 +30,47 @@ import {AuthService} from "../auth/auth.service";
 
 })
 export class UserPageComponent implements OnInit {
+  registerForm: FormGroup;
 
-  qw:any = './css/bootstrap.min.css';
-
+  submitted = false;
   img: any;
-  upImage: any ;
+  upImage: any;
 
   crew_front: any = "../assets/img/crew_front.png";
-  invisibleman:any= "../assets/img/invisibleman.jpg";
-  font_bold:any="../assets/img/font_bold.png";
-  font_italic:any="../assets/img/font_italic.png";
-  font_strikethrough:any="../assets/img/font_strikethrough.png";
-  font_underline:any="../assets/img/font_underline.png";
+  invisibleman: any = "../assets/img/invisibleman.jpg";
+  font_bold: any = "../assets/img/font_bold.png";
+  font_italic: any = "../assets/img/font_italic.png";
+  font_strikethrough: any = "../assets/img/font_strikethrough.png";
+  font_underline: any = "../assets/img/font_underline.png";
   e: any = "src";
-  constructor(private userService: UserService, private authService: AuthService) {
+
+  constructor(private userService: UserService,
+              private authService: AuthService,
+              private formBuilder: FormBuilder,) {
     this.loadScript();
 
 
   }
 
-  flip(){
+  get f() {
+    return this.registerForm.controls;
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // reset alerts on submit
+
+
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+
+  }
+
+  flip() {
     this.loadScript8();
 
     this.loadScript1();
@@ -59,10 +81,18 @@ export class UserPageComponent implements OnInit {
     this.loadScript3();
     //this.loadScript7();
     document.getElementById("fade").remove();
+    document.getElementById("remove-but").remove();
   }
+
   ngOnInit() {
 
-
+    this.registerForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      tags: ['', Validators.required],
+      style: ['', Validators.required],
+       description: ['', Validators.required],
+      // password: ['', [Validators.required, Validators.minLength(6)]]
+    });
 
   }
 
@@ -84,12 +114,12 @@ export class UserPageComponent implements OnInit {
 
 
   imgURL: any;
-  isHidden:boolean =true;
+  isHidden: boolean = true;
   public files: NgxFileDropEntry[] = [];
   // preview:any;
   // reader:any;
 
-  dropped(files:NgxFileDropEntry[]){
+  dropped(files: NgxFileDropEntry[]) {
     this.files = files;
     for (const droppedFile of files) {
 
@@ -111,7 +141,7 @@ export class UserPageComponent implements OnInit {
           this.upImage = new Image();
           //preview.src ="pic.jpg";
           this.upImage = file;
-          this.isHidden=false;
+          this.isHidden = false;
 
 
           // var imageElement = document.createElement('img');
@@ -144,24 +174,18 @@ export class UserPageComponent implements OnInit {
     }
   }
 
-  fileOver(event)
-  {
+  fileOver(event) {
     console.log(event);
   }
 
 
-  fileLeave(event)
-  {
+  fileLeave(event) {
     console.log(event);
   }
-
-
-
-
 
 
   public loadScript() {
-    let body = <HTMLDivElement> document.head;
+    let body = <HTMLDivElement>document.head;
     let script = document.createElement('script');
     //script.innerHTML
     script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js';
@@ -169,13 +193,14 @@ export class UserPageComponent implements OnInit {
     script.defer = true;
     body.appendChild(script);
   }
+
   public loadScript1() {
 
-    let body = <HTMLDivElement> document.body;
+    let body = <HTMLDivElement>document.body;
     let script = document.createElement('script');
     //script.innerHTML
     script.src = './assets/fabric.js';
-    script.type ="text/javascript";
+    script.type = "text/javascript";
     script.async = false;
     script.defer = true;
 
@@ -183,47 +208,51 @@ export class UserPageComponent implements OnInit {
   }
 
   public loadScript3() {
-    let body = <HTMLDivElement> document.body;
+    let body = <HTMLDivElement>document.body;
     let script = document.createElement('script');
 
     script.src = './assets/sc.js';
-    script.type ="text/javascript";
+    script.type = "text/javascript";
     script.async = false;
     script.defer = true;
     body.appendChild(script);
   }
+
   public loadScript4() {
-    let body = <HTMLDivElement> document.body;
+    let body = <HTMLDivElement>document.body;
     let script = document.createElement('script');
     //script.innerHTML
     script.src = './assets/bootstrap.js';
-    script.type ="text/javascript";
+    script.type = "text/javascript";
     script.async = false;
     script.defer = true;
     body.appendChild(script);
   }
+
   public loadScript5() {
-    let body = <HTMLDivElement> document.body;
+    let body = <HTMLDivElement>document.body;
     let script = document.createElement('script');
     //script.innerHTML
     script.src = './assets/tshirtEditor.js';
-    script.type ="text/javascript";
+    script.type = "text/javascript";
     script.async = false;
     script.defer = true;
     body.appendChild(script);
   }
+
   public loadScript6() {
-    let body = <HTMLDivElement> document.body;
+    let body = <HTMLDivElement>document.body;
     let script = document.createElement('script');
     //script.innerHTML
     script.src = './assets/jquery.miniColors.min.js';
-    script.type ="text/javascript";
+    script.type = "text/javascript";
     script.async = false;
     script.defer = true;
     body.appendChild(script);
   }
+
   public loadScript7() {
-    let body = <HTMLDivElement> document.body;
+    let body = <HTMLDivElement>document.body;
     let script = document.createElement('script');
     script.innerHTML = ' var _gaq = _gaq || [];\n' +
       '  _gaq.push([\'_setAccount\', \'UA-35639689-1\']);\n' +
@@ -234,15 +263,16 @@ export class UserPageComponent implements OnInit {
       '    var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(ga, s);\n' +
       '  })();';
     //script.src = 'angular-pr/src/app/user-page/js/jquery.miniColors.min.js';
-    script.type ="text/javascript";
+    script.type = "text/javascript";
     script.async = false;
     script.defer = true;
     body.appendChild(script);
   }
+
   public loadScript8() {
-    let body = <HTMLDivElement> document.body;
+    let body = <HTMLDivElement>document.body;
     let script = document.createElement('script');
-    script.innerHTML= '$(document).ready(function(){\n' +
+    script.innerHTML = '$(document).ready(function(){\n' +
       '   $("#tshirttype").change(function(){\n' +
       '     $("img[name=tshirtview]").attr("src",$(this).val());\n' +
       '\n' +
@@ -250,7 +280,7 @@ export class UserPageComponent implements OnInit {
       '\n' +
       '});  ';
     //script.src = 'angular-pr/src/app/user-page/js/jquery.miniColors.min.js';
-    script.type ="text/javascript";
+    script.type = "text/javascript";
     script.async = false;
     script.defer = true;
     body.appendChild(script);
