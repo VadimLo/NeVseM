@@ -1,23 +1,31 @@
-<div>
+<mdb-card class="w-responsive text-center mx-auto p-3 mt-2">
+
   <table id="tableSortExample" mdbTable class="z-depth-1">
     <thead>
     <tr>
-      <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="users" [sortBy]="headElements[i]">{{head | titlecase}}
+      <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col"
+          [mdbTableSort]="users" [sortBy]="headElements[i]">{{head | titlecase}}
         <mdb-icon fas icon="sort"></mdb-icon>
       </th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let el of users; let i = index">
-      <th scope="row">{{el.id}}</th>
-      <td>{{el.userId}}</td>
+      <th scope="row">{{el.userId}}</th>
+
       <td>{{el.firstName}}</td>
       <td>{{el.lastName}}</td>
       <td>{{el.username}}</td>
       <td>{{el.email}}</td>
       <td>{{el.isEnabled}}</td>
+      <td>{{el.role}}</td>
+      <td><button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(el.userId)">Remove</button>
+      </td>
+
     </tr>
     </tbody>
   </table>
-</div>
+
+</mdb-card>
+
 

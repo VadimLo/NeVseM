@@ -21,4 +21,12 @@ export class AdministrationComponent implements OnInit {
     );
   }
 
+  remove(id: number) {
+    this.userService.deleteOne(id).subscribe();
+    this.users = this.users.filter(item => item.userId != id);
+  }
+  deleteUser(id: number) {
+
+  }
+
 }
