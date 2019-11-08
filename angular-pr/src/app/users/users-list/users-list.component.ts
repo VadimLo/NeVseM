@@ -12,7 +12,8 @@ export class UsersListComponent implements OnInit {
   users = [];
   errorMessage: string;
 
-  constructor(private userService: UserService, private authService: AuthService) { }
+  constructor(private userService: UserService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.userService.findAll().subscribe(

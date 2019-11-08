@@ -4,6 +4,7 @@ import {AdministrationComponent} from "./administration.component";
 import {AdminGuard} from "./admin.guard";
 import {adminRote} from "./admin.rotes";
 import {RouterModule} from "@angular/router";
+import {MDBBootstrapModule} from "angular-bootstrap-md";
 
 
 
@@ -14,6 +15,7 @@ import {RouterModule} from "@angular/router";
   imports: [
     CommonModule,
     RouterModule.forChild(adminRote),
+    MDBBootstrapModule.forRoot(),
 
   ],
   providers:[

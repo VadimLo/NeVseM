@@ -1,1 +1,23 @@
-<p>administration works!</p>
+<div>
+  <table id="tableSortExample" mdbTable class="z-depth-1">
+    <thead>
+    <tr>
+      <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="users" [sortBy]="headElements[i]">{{head | titlecase}}
+        <mdb-icon fas icon="sort"></mdb-icon>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let el of users; let i = index">
+      <th scope="row">{{el.id}}</th>
+      <td>{{el.userId}}</td>
+      <td>{{el.firstName}}</td>
+      <td>{{el.lastName}}</td>
+      <td>{{el.username}}</td>
+      <td>{{el.email}}</td>
+      <td>{{el.isEnabled}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

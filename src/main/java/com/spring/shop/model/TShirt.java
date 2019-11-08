@@ -1,6 +1,7 @@
 package com.spring.shop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -29,8 +30,8 @@ public class TShirt {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "userId", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonProperty("user")
-    @ReadOnlyProperty
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnore
     private User user;
 
 
