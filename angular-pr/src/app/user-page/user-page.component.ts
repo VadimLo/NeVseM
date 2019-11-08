@@ -19,16 +19,19 @@ import {AuthService} from "../auth/auth.service";
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss',
-    './css/bootstrap.min.css',
-    './css/bootstrap-responsive.css',
-    './css/bootstrap-responsive.min.css',
-    './css/jquery.miniColors.css',
-    './css/jquery.simplecolorpicker.css',
+    //'./css/bootstrap.min.css',
+    // './css/bootstrap-responsive.css',
+    // './css/bootstrap-responsive.min.css',
+    // './css/jquery.miniColors.css',
+    //'./css/jquery.simplecolorpicker.css',
   ],
 
 
 })
 export class UserPageComponent implements OnInit {
+
+  qw:any = './css/bootstrap.min.css';
+
   img: any;
   upImage: any ;
 
