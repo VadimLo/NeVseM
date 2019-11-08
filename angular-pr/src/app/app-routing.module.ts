@@ -7,6 +7,7 @@ import {AuthGuard} from "./auth.guard";
 import {UsersListComponent} from "./users/users-list/users-list.component";
 import {SingUpComponent} from "./sing-up/sing-up.component";
 import {UserPageComponent} from "./user-page/user-page.component";
+import {AdministrationComponent} from "./administration/administration.component";
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
     , canActivate: [AuthGuard]
 
   },
+  {
+    path:'admin',
+    loadChildren:'./administration/admin.module'
+  }
 
 ];
 

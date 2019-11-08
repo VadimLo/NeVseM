@@ -41,7 +41,8 @@ import {NgxFileDropModule} from "ngx-file-drop";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UserPageComponent} from './user-page/user-page.component';
 import {NavbarComponent} from './navbar/navbar.component';
-import {TShirt} from './auth/tshirt'
+import {TShirt} from './auth/tshirt';
+import { AdministrationComponent } from './administration/administration.component'
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import {TShirt} from './auth/tshirt'
     MultiAlertsComponent,
     UserPageComponent,
     NavbarComponent,
+
 
   ],
   imports: [
