@@ -1,31 +1,78 @@
-<mdb-card class="w-responsive text-center mx-auto p-3 mt-2">
 
-  <table id="tableSortExample" mdbTable class="z-depth-1">
-    <thead>
-    <tr>
-      <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col"
-          [mdbTableSort]="users" [sortBy]="headElements[i]">{{head | titlecase}}
-        <mdb-icon fas icon="sort"></mdb-icon>
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let el of users; let i = index">
-      <th scope="row">{{el.userId}}</th>
+<!--  <table id="tableSortExample" mdbTable class="z-depth-1">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col"-->
+<!--          [mdbTableSort]="users" [sortBy]="headElements[i]">{{head | titlecase}}-->
+<!--        <mdb-icon fas icon="sort"></mdb-icon>-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr *ngFor="let el of users; let i = index">-->
+<!--      <th scope="row">{{el.userId}}</th>-->
 
-      <td>{{el.firstName}}</td>
-      <td>{{el.lastName}}</td>
-      <td>{{el.username}}</td>
-      <td>{{el.email}}</td>
-      <td>{{el.isEnabled}}</td>
-      <td>{{el.role}}</td>
-      <td><button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(el.userId)">Remove</button>
-      </td>
+<!--      <td>{{el.firstName}}</td>-->
+<!--      <td>{{el.lastName}}</td>-->
+<!--      <td>{{el.username}}</td>-->
+<!--      <td>{{el.email}}</td>-->
+<!--      <td>{{el.enabled}}</td>-->
+<!--      <td>{{el.role}}</td>-->
+<!--      <td><button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(el.userId)">Remove</button>-->
+<!--      </td>-->
 
-    </tr>
-    </tbody>
-  </table>
-
-</mdb-card>
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
 
 
+
+<div class="container">
+  <div class="row">
+    <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
+      <thead class="sticky-top">
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="users"
+            [sortBy]="headElements[i]"
+            scope="col">{{head | titlecase}}
+          <mdb-icon  fas icon="sort"></mdb-icon>
+        </th>
+      </tr>
+      </thead>
+      <tbody #row>
+      <tr *ngFor="let el of users; let i = index">
+        <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+            scope="row">{{el.userId}}
+        </th>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          {{el.firstName}}
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          {{el.lastName}}
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          {{el.username}}
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          {{el.role}}
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          {{el.enabled}}
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          <button mdbBtn color="warning" size="sm" mdbWavesEffect (click)="editRow(el)">Edit</button>
+          <button mdbBtn color="danger" size="sm" mdbWavesEffect (click)="removeRow(el)">Remove</button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot class="grey lighten-5 w-100">
+      <tr>
+        <td colspan="5">
+          <mdb-table-pagination [tableEl]="tableEl" paginationAlign=""
+                                [searchDataSource]="elements"></mdb-table-pagination>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

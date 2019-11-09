@@ -26,6 +26,9 @@ export class UserService {
   register(user: User){
     return this.http.post(`${environment.serverUrl}singup/reg`,user,{  responseType: 'text'});
   }
+  update(user:any){
+    return this.authHttp.post(`${environment.serverUrl}users/update`, user);
+  }
   saveImg(tshirt: TShirt){
 
     return this.authHttp.post(`${environment.serverUrl}img/hi`,tshirt);

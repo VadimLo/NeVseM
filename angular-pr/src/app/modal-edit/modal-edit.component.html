@@ -1,0 +1,69 @@
+<div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">×</span>
+      </button>
+      <h4 class="modal-title w-100" id="myModalLabel">Edit user: {{editableRow.firstName}}</h4>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="form">
+        <div class="md-form">
+          <label for="userId">ID</label>
+          <input id="userId" type="text" class="form-control grey-text" formControlName="userId" mdbInput>
+
+        </div>
+        <div class="md-form">
+          <label for="firstName">First</label>
+          <input id="firstName" type="text" class="form-control" formControlName="firstName" mdbInput mdbValidate
+                 [validateSuccess]="false">
+
+          <mdb-error *ngIf="first.invalid && (first.dirty || first.touched)">Input is required</mdb-error>
+        </div>
+        <div class="md-form">
+          <label for="lastName">Last</label>
+          <input id="lastName" type="text" class="form-control" formControlName="lastName" mdbInput mdbValidate
+                 [validateSuccess]="false">
+
+          <mdb-error *ngIf="last.invalid && (last.dirty || last.touched)">Input is required</mdb-error>
+        </div>
+        <div class="md-form">
+          <label for="username">Username</label>
+          <input id="username" type="text" class="form-control" formControlName="username" mdbInput mdbValidate
+                 [validateSuccess]="false">
+
+          <mdb-error *ngIf="last.invalid && (username.dirty || username.touched)">Input is required</mdb-error>
+        </div>
+        <div class="md-form">
+          <label for="role">Role</label>
+          <!--          <input id="handle" type="text" class="form-control" formControlName="handle" mdbInput mdbValidate-->
+          <!--                 [validateSuccess]="false">-->
+          <select id="role" class="browser-default custom-select form-control" formControlName="role" mdbInput
+                  mdbValidate
+                  [validateSuccess]="false">
+            <!--            <option selected>Open this select menu</option>-->
+            <option value="ROLE_ADMIN">Admin</option>
+            <option value="ROLE_USER">User</option>
+            <!--            <option value="3">Three</option>-->
+          </select>
+          <mdb-error *ngIf="handle.invalid && (handle.dirty || handle.touched)">Input is required</mdb-error>
+          <div class="md-form" style="margin-left: 25px;">
+            <label for="enabled" style="margin-left: -25px;">Is enable</label>
+            <mdb-checkbox id="enabled" formControlName="enabled" style="margin-left: 15px">Account enable</mdb-checkbox>
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+              (click)="modalRef.hide()" mdbWavesEffect>Close
+      </button>
+      <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect
+              [disabled]="form.invalid" (click)="editRow()">Save!
+      </button>
+    </div>
+  </div>
+</div>
+

@@ -4,22 +4,34 @@ import {AdministrationComponent} from "./administration.component";
 import {AdminGuard} from "./admin.guard";
 import {adminRote} from "./admin.rotes";
 import {RouterModule} from "@angular/router";
-import {MDBBootstrapModule} from "angular-bootstrap-md";
+import {IconsModule, MDBBootstrapModule} from "angular-bootstrap-md";
 
-
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
-    AdministrationComponent
+    AdministrationComponent,
+    //ModalEditComponent
+
   ],
   imports: [
+
     CommonModule,
     RouterModule.forChild(adminRote),
     MDBBootstrapModule.forRoot(),
+    ReactiveFormsModule,
+    FormsModule,
+    IconsModule,
+
+
 
   ],
+
+  //exports: [ModalEditComponent],
+  //entryComponents: [ModalEditComponent],
   providers:[
-    AdminGuard
+    AdminGuard,
+    //MDBSpinningPreloader
   ]
 })
 export default class AdminModule { }

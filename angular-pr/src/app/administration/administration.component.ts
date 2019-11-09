@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../user.service";
+import {MDBModalRef, MDBModalService, MdbTableDirective, MdbTablePaginationComponent} from "angular-bootstrap-md";
+import {ModalEditComponent} from "../modal-edit/modal-edit.component";
 
 @Component({
   selector: 'app-administration',
@@ -9,9 +11,18 @@ import {UserService} from "../user.service";
 export class AdministrationComponent implements OnInit {
  users= [];
   errorMessage: string;
-  headElements = ['id', 'first', 'last', 'handle'];
+ //headElements = ['id', 'first', 'last', 'handle'];
+  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
+  @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
+  @ViewChild('row', { static: true }) row: ElementRef;
 
+  elements: any = [];
+  headElements = ['id', 'firstName', 'lastName', 'Username', 'Role','Enabled','command'];
+
+  modalRef: MDBModalRef;
   constructor(private userService: UserService,
+              private cdRef: ChangeDetectorRef,
+              private modalService: MDBModalService
               ) { }
 
   ngOnInit() {
@@ -19,14 +30,54 @@ export class AdministrationComponent implements OnInit {
       users => this.users = users,
       error => this.errorMessage = error.json().message
     );
+
+    for (let i = 1; i <= 25; i++) {
+      this.elements.push({id: i.toString(), first: 'User ' + i, last: 'Last ' + i, handle: 'Handle ' + i});
+    }
+
+    this.mdbTable.setDataSource(this.elements);
+    this.elements = this.mdbTable.getDataSource();
   }
 
-  remove(id: number) {
-    this.userService.deleteOne(id).subscribe();
-    this.users = this.users.filter(item => item.userId != id);
-  }
-  deleteUser(id: number) {
+  // remove(id: number) {
+  //   this.userService.deleteOne(id).subscribe();
+  //   this.users = this.users.filter(item => item.userId != id);
+  // }
+  // deleteUser(id: number) {
+  //
+  // }
+  ngAfterViewInit() {
+    this.mdbTablePagination.setMaxVisibleItemsNumberTo(8);
 
+    this.mdbTablePagination.calculateFirstItemIndex();
+    this.mdbTablePagination.calculateLastItemIndex();
+    this.cdRef.detectChanges();
   }
 
+  editRow(el: any) {
+    const elementIndex = this.users.findIndex((elem: any) => el === elem);
+    const modalOptions = {
+      data: {
+        editableRow: el
+      }
+    };
+    this.modalRef = this.modalService.show(ModalEditComponent, modalOptions);
+    this.modalRef.content.saveButtonClicked.subscribe((newElement: any) => {
+      this.users[elementIndex] = newElement;
+      console.log(this.users[elementIndex]);
+      this.userService.update(this.users[elementIndex]).subscribe();
+    });
+    this.mdbTable.setDataSource(this.users);
+  }
+
+  removeRow(el: any) {
+    const elementIndex = this.users.findIndex((elem: any) => el === elem);
+    this.mdbTable.removeRow(elementIndex);
+    this.mdbTable.getDataSource().forEach((el: any, index: any) => {
+      el.id = (index + 1).toString();
+    });
+    this.mdbTable.setDataSource(this.users);
+  }
 }
+
+

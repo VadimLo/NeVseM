@@ -1,19 +1,5 @@
-// import { BrowserModule } from '@angular/platform-browser';
-// import { NgModule } from '@angular/core';
-//
-// import { AppRoutingModule } from './app-routing.module';
-// import { AppComponent } from './app.component';
-//
-// import {BrowserModule} from '@angular/platform-browser';
-// import {NgModule} from '@angular/core';
-// import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-// import {HttpModule} from '@angular/http';
-//
-// import {AppComponent} from './app.component';
-// import {AuthModule} from "./auth/auth.module";
+
 import {routing} from './app-routing.module';
-// import {SingUpComponent} from './sing-up/sing-up.component';
-// import {LoginPageComponent} from "./login/login-page/login-page.component";
 
 
 import {HomeComponent} from './home/home.component';
@@ -32,7 +18,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthModule} from "./auth/auth.module";
 import {HttpModule} from "@angular/http";
-import {MDBBootstrapModule} from "angular-bootstrap-md";
+import {IconsModule, MDBBootstrapModule} from "angular-bootstrap-md";
 import {MultiAlertsComponent} from "./multi-alerts";
 import {AlertModule} from "./alert";
 import {AngularDraggableModule} from "angular2-draggable";
@@ -43,6 +29,9 @@ import {UserPageComponent} from './user-page/user-page.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {TShirt} from './auth/tshirt';
 import { AdministrationComponent } from './administration/administration.component'
+
+import AdminModule from "./administration/admin.module";
+import { ModalEditComponent } from './modal-edit/modal-edit.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +44,9 @@ import { AdministrationComponent } from './administration/administration.compone
     MultiAlertsComponent,
     UserPageComponent,
     NavbarComponent,
+    ModalEditComponent
+
+
 
 
   ],
@@ -72,8 +64,9 @@ import { AdministrationComponent } from './administration/administration.compone
     ResizableModule,
     NgxFileDropModule,
     BrowserAnimationsModule,
-
+    IconsModule,
   ],
+  entryComponents: [ ModalEditComponent ],
   providers: [
     UserService,
     AuthGuard,
@@ -81,9 +74,13 @@ import { AdministrationComponent } from './administration/administration.compone
     AuthService,
     User,
     TShirt,
+    AdminModule,
 
   ],
-  bootstrap: [AppComponent,]
+
+  bootstrap: [AppComponent,],
+
+ // exports:[AdminModule]
 })
 export class AppModule {
 }
