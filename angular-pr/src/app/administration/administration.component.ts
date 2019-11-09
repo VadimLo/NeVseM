@@ -9,7 +9,7 @@ import {ModalEditComponent} from "../modal-edit/modal-edit.component";
   styleUrls: ['./administration.component.scss']
 })
 export class AdministrationComponent implements OnInit {
- users= [];
+ users: any= [];
   errorMessage: string;
  //headElements = ['id', 'first', 'last', 'handle'];
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
@@ -23,20 +23,22 @@ export class AdministrationComponent implements OnInit {
   constructor(private userService: UserService,
               private cdRef: ChangeDetectorRef,
               private modalService: MDBModalService
-              ) { }
+              ) {
+
+  }
 
   ngOnInit() {
     this.userService.findAll().subscribe(
       users => this.users = users,
       error => this.errorMessage = error.json().message
     );
-
+console.log(this.users);
     for (let i = 1; i <= 25; i++) {
-      this.elements.push({id: i.toString(), first: 'User ' + i, last: 'Last ' + i, handle: 'Handle ' + i});
+      this.users.push({id: i.toString(), first: 'User ' + i, last: 'Last ' + i, handle: 'Handle ' + i});
     }
 
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
+    this.mdbTable.setDataSource(this.users);
+    this.users = this.mdbTable.getDataSource();
   }
 
   // remove(id: number) {
@@ -72,10 +74,10 @@ export class AdministrationComponent implements OnInit {
 
   removeRow(el: any) {
     const elementIndex = this.users.findIndex((elem: any) => el === elem);
-    this.mdbTable.removeRow(elementIndex);
-    this.mdbTable.getDataSource().forEach((el: any, index: any) => {
-      el.id = (index + 1).toString();
-    });
+    //this.mdbTable.removeRow(elementIndex);
+
+    this.users = this.users.filter(item => item.userId != el.userId);
+    this.userService.deleteOne(el.userId).subscribe();
     this.mdbTable.setDataSource(this.users);
   }
 }

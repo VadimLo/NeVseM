@@ -62,9 +62,9 @@ public class RegistrationController {
             User user = userRepository.findByEmail(byConfirmationToken.getUser().getEmail());
             user.setEnabled(true);
             userRepository.save(user);
-            // return ResponseEntity.status(HttpStatus.CREATED).build();
+
         }
-        //return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
+
         return new RedirectView("http://localhost:4200/login");
 
     }

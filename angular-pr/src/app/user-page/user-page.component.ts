@@ -69,6 +69,7 @@ export class UserPageComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
+
     this.tshirt = this.registerForm.value;
     htmlToImage.toPng(document.getElementById('shirtDiv')).then(dataUrl => {
       console.log(dataUrl);

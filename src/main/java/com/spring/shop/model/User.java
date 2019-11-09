@@ -38,7 +38,14 @@ public class User {
     private List<TShirt> tShirts;
 
 
-    public User(String firstName, String lastName, String username, String password, String email,boolean isEnabled, final UserRole role,  List<TShirt> tShirts) {
+    public User(String firstName,
+                String lastName,
+                String username,
+                String password,
+                String email,
+                boolean isEnabled,
+                final UserRole role,
+                List<TShirt> tShirts) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
