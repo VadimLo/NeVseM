@@ -11,12 +11,12 @@ import {ModalEditComponent} from "../modal-edit/modal-edit.component";
 export class AdministrationComponent implements OnInit {
  users: any= [];
   errorMessage: string;
- //headElements = ['id', 'first', 'last', 'handle'];
+
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild('row', { static: true }) row: ElementRef;
 
-  elements: any = [];
+
   headElements = ['id', 'firstName', 'lastName', 'Username', 'Role','Enabled','command'];
 
   modalRef: MDBModalRef;
@@ -32,7 +32,7 @@ export class AdministrationComponent implements OnInit {
       users => this.users = users,
       error => this.errorMessage = error.json().message
     );
-console.log(this.users);
+
     for (let i = 1; i <= 25; i++) {
       this.users.push({id: i.toString(), first: 'User ' + i, last: 'Last ' + i, handle: 'Handle ' + i});
     }
@@ -41,13 +41,7 @@ console.log(this.users);
     this.users = this.mdbTable.getDataSource();
   }
 
-  // remove(id: number) {
-  //   this.userService.deleteOne(id).subscribe();
-  //   this.users = this.users.filter(item => item.userId != id);
-  // }
-  // deleteUser(id: number) {
-  //
-  // }
+
   ngAfterViewInit() {
     this.mdbTablePagination.setMaxVisibleItemsNumberTo(8);
 

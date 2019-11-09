@@ -50,7 +50,7 @@ export class UserPageComponent implements OnInit {
               private authService: AuthService,
               private formBuilder: FormBuilder,
               private tshirt: TShirt) {
-    this.loadScript();
+
 
 
   }
@@ -92,6 +92,7 @@ export class UserPageComponent implements OnInit {
   }
 
   flip() {
+
     this.loadScript8();
 
     this.loadScript1();
@@ -106,7 +107,7 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.loadScript();
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       tags: ['', Validators.required],

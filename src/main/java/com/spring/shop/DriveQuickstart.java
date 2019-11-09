@@ -17,12 +17,11 @@ import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+import sun.misc.BASE64Encoder;
 
 import java.awt.image.BufferedImage;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
@@ -119,7 +118,31 @@ public class  DriveQuickstart {
                         .setFields("id")
                         .execute();
         System.out.println("File ID: " + file2.getId());
+
+
         return file2.getId();
     }
+    public static String downloadImage(String driveId) throws GeneralSecurityException, IOException {
+        // Print the names and IDs for up to 10 files.
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        service.files().get(driveId)
+                .executeMediaAndDownloadTo(outputStream);
+
+        BASE64Encoder encoder = new BASE64Encoder();
+        String imageString ="data:image/png;base64,";
+          imageString = imageString + Base64.encode(outputStream.toByteArray());
+
+
+        return imageString;
+    }
+
+
 
 }

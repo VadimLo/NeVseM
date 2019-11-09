@@ -17,6 +17,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.Arrays;
+import java.util.List;
 
 import sun.misc.BASE64Decoder;
 
@@ -46,6 +48,23 @@ public class ImageController {
         tShirt.setImage(DriveQuickstart.uploadImage(imageBytes));
         tShirtRepository.save(tShirt);
 
+    }
+
+    @GetMapping("/tshirts")
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<TShirt> getAllTshirts(){
+        List<TShirt> tShirts =tShirtRepository.findAll();
+        tShirts.forEach(tShirt -> {
+            try {
+                tShirt.setImage(DriveQuickstart.downloadImage(tShirt.getImage()));
+            } catch (GeneralSecurityException e) {
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return tShirts;
     }
 
 }

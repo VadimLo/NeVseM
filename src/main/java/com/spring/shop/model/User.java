@@ -1,10 +1,12 @@
 package com.spring.shop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -14,7 +16,7 @@ import java.util.List;
 @EqualsAndHashCode
 @ToString
 @NoArgsConstructor
-public class User {
+public class User   {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,8 +35,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany(mappedBy = "user",  cascade = CascadeType.ALL)
+   // @JsonIgnore
+    //JsonProperty(access = JsonProperty.Access.)
     private List<TShirt> tShirts;
 
 

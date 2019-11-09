@@ -33,5 +33,8 @@ export class UserService {
 
     return this.authHttp.post(`${environment.serverUrl}img/hi`,tshirt);
   }
+  findAllTshirts(){
+    return this.authHttp.get(`${environment.serverUrl}tshirts`).map(res => res.json());
+  }
 
 }

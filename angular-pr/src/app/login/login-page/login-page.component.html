@@ -31,81 +31,81 @@
 
   </div>
 </div>
-<button class="btn btn-primary" (click)="renderImage()">screen mb xz</button>
-<button class="btn btn-primary" (click)="removeImage()">remove img</button>
+<!--<button class="btn btn-primary" (click)="renderImage()">screen mb xz</button>-->
+<!--<button class="btn btn-primary" (click)="removeImage()">remove img</button>-->
 
 
-<div class="mainContainer">
-  <div id="screen" class="lpart">
-    <div>
-      <div class="layout " (click)="inBounds = !inBounds">
-        <img class="square " [src]="netImageTs" [draggable]="false"
-             [ngClass]="{ 'top-b': !edge?.top, 'bottom-b': !edge?.bottom, 'left-b': !edge?.left, 'right-b': !edge?.right }"
-             #myBounds/>
+<!--<div class="mainContainer">-->
+<!--  <div id="screen" class="lpart">-->
+<!--    <div>-->
+<!--      <div class="layout " (click)="inBounds = !inBounds">-->
+<!--        <img class="square " [src]="netImageTs" [draggable]="false"-->
+<!--             [ngClass]="{ 'top-b': !edge?.top, 'bottom-b': !edge?.bottom, 'left-b': !edge?.left, 'right-b': !edge?.right }"-->
+<!--             #myBounds/>-->
 
 
-      </div>
-      <div class="layout">
+<!--      </div>-->
+<!--      <div class="layout">-->
 
-        <img class="square l2" [src]="netImageMask" [draggable]="false"/>
+<!--        <img class="square l2" [src]="netImageMask" [draggable]="false"/>-->
 
-      </div>
-    </div>
+<!--      </div>-->
+<!--    </div>-->
 
-    <div>
-      <img id="mainIm" [src]="imgURL"    *ngIf="imgURL"
-           class="ng-draggable inner-img l3 drag-block" (edge)="checkEdge($event)"
-           [bounds]="myBounds"
-           [inBounds]="inBounds"
+<!--    <div>-->
+<!--      <img id="mainIm" [src]="imgURL"    *ngIf="imgURL"-->
+<!--           class="ng-draggable inner-img l3 drag-block" (edge)="checkEdge($event)"-->
+<!--           [bounds]="myBounds"-->
+<!--           [inBounds]="inBounds"-->
 
-           [ngDraggable]="drag"
-           [draggable]="false"
-
-
-           mwlResizable
-
-           [enableGhostResize]="true"
-           resizeCursorPrecision="10"
-           [resizeEdges]="{bottom: true, right: true, top: false, left: false}"
-
-           (resizeStart)="startResize($event)"
-           (resizeEnd)="onResizeEnd($event)"
-           [style.height.px]="height"
-           [style.width.px]="width"
-      />
-
-    </div>
-
-  </div>
+<!--           [ngDraggable]="drag"-->
+<!--           [draggable]="false"-->
 
 
-  <div class="center">
-    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
-                   (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
-      <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-        Optional custom content that replaces the the entire default content.
-        <button type="button" (click)="openFileSelector()">Browse Files</button>
-      </ng-template>
-    </ngx-file-drop>
-    <div class="upload-table">
-      <table class="table">
-        <thead>
-        <tr>
-          <th>Name</th>
-        </tr>
-        </thead>
-        <tbody class="upload-name-style">
-        <tr *ngFor="let item of files; let i=index">
-          <td><strong>{{ item.relativePath }}</strong></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<!--           mwlResizable-->
 
-</div>
-<div class="" id="screensh">
-  <img [src]="imgURL"  alt=""  *ngIf="imgURL">
-</div>
+<!--           [enableGhostResize]="true"-->
+<!--           resizeCursorPrecision="10"-->
+<!--           [resizeEdges]="{bottom: true, right: true, top: false, left: false}"-->
+
+<!--           (resizeStart)="startResize($event)"-->
+<!--           (resizeEnd)="onResizeEnd($event)"-->
+<!--           [style.height.px]="height"-->
+<!--           [style.width.px]="width"-->
+<!--      />-->
+
+<!--    </div>-->
+
+<!--  </div>-->
+
+
+<!--  <div class="center">-->
+<!--    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"-->
+<!--                   (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">-->
+<!--      <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">-->
+<!--        Optional custom content that replaces the the entire default content.-->
+<!--        <button type="button" (click)="openFileSelector()">Browse Files</button>-->
+<!--      </ng-template>-->
+<!--    </ngx-file-drop>-->
+<!--    <div class="upload-table">-->
+<!--      <table class="table">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--          <th>Name</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody class="upload-name-style">-->
+<!--        <tr *ngFor="let item of files; let i=index">-->
+<!--          <td><strong>{{ item.relativePath }}</strong></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->
+<!--<div class="" id="screensh">-->
+<!--  <img [src]="imgURL"  alt=""  *ngIf="imgURL">-->
+<!--</div>-->
 
 
