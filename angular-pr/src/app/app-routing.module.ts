@@ -8,6 +8,7 @@ import {UsersListComponent} from "./users/users-list/users-list.component";
 import {SingUpComponent} from "./sing-up/sing-up.component";
 import {UserPageComponent} from "./user-page/user-page.component";
 import {AdministrationComponent} from "./administration/administration.component";
+import {TshirtBuyComponent} from "./tshirt-buy/tshirt-buy.component";
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path:'admin',
     loadChildren:'./administration/admin.module'
+  },
+  {
+    path:'buy',
+    component:TshirtBuyComponent,
   }
 
 ];

@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.imagebg {
+  height:auto;
+  min-height:100vh;
+  background: url("./assets/back-dis.jpg");
+  background-size:cover;
+  background-position:center;
+
+}
+.imagebg background {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}

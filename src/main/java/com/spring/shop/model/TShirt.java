@@ -16,15 +16,15 @@ import java.io.Serializable;
 @EqualsAndHashCode
 
 @NoArgsConstructor
-public class TShirt   {
+public class TShirt {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String style;
     private String tags;
     private String image;
-
+    private String description;
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

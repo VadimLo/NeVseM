@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface TShirtRepository extends JpaRepository<TShirt, Long> {
-
+    TShirt findFirstById(Long Id);
 }

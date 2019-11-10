@@ -17,6 +17,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,6 +55,8 @@ public class ImageController {
     @ResponseStatus(value = HttpStatus.OK)
     public List<TShirt> getAllTshirts(){
         List<TShirt> tShirts =tShirtRepository.findAll();
+        List<TShirt> newtShirts = new ArrayList<>(6);
+
         tShirts.forEach(tShirt -> {
             try {
                 tShirt.setImage(DriveQuickstart.downloadImage(tShirt.getImage()));
@@ -64,7 +67,18 @@ public class ImageController {
                 e.printStackTrace();
             }
         });
-        return tShirts;
+        for (int i=0;i<6;i++){
+            newtShirts.add(tShirts.get(tShirts.size()-(1+i)));
+        }
+
+        return newtShirts;
+    }
+    @GetMapping("/tshirt/{id}")
+    public User getUserByTshirt(@PathVariable Long id){
+        TShirt tShirt=tShirtRepository.findFirstById(id);
+       // tShirt.us
+        return userRepository.findByUserId(tShirt.getUser().getUserId()) ;
+
     }
 
 }

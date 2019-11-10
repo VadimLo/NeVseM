@@ -1,0 +1,61 @@
+<div class="">
+  <div class="w-responsive w-50 p-3 mx-auto " style="background-color: #eee; display: flex;">
+    <div class="d-inline-block">
+      <img [src]="message.image">
+    </div>
+    <div class="d-inline-block container" style=" width: 100%; margin: 15px; ">
+      <div class="row">
+        <div class="col"><h4>Name</h4> </div>
+        <div class="col"> {{message.name}}</div>
+      </div>
+      <div class="row">
+        <div class="col"> <h4>Tags</h4></div>
+        <div class="col"> {{message.style}}</div>
+      </div>
+      <div class="row">
+        <div class="col"><h4>Description</h4> </div>
+        <div class="col"> {{message.description}}</div>
+      </div>
+      <div class="row">
+        <div class="col"> <h4>Made by</h4> </div>
+        <div class="col" *ngIf="user.username">{{user.username}} </div>
+      </div>
+
+
+      <div class="" style="margin: 10px">
+        <div>
+          <h3>Select Sizes</h3>
+
+          <table class="table">
+            <tr>
+              <td><input type="checkbox">&emsp;S</td>
+              <td align="right"><input min="0" style="width: 40px;" value="1" type="number"></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox">&emsp;M</td>
+              <td align="right"><input min="0" style="width: 40px;" placeholder="1" type="number"></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox">&emsp;L</td>
+              <td align="right"><input min="0" style="width: 40px;" placeholder="1" type="number"></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox">&emsp;XL</td>
+              <td align="right"><input min="0" style="width: 40px;" placeholder="1" type="number"></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox">&emsp;XXL</td>
+              <td align="right"><input min="0" style="width: 40px;" placeholder="1" type="number"></td>
+            </tr>
+          </table>
+
+          <button type="button" class="btn btn-large btn-block btn-success" >Buy
+            <i class="icon-briefcase icon-white"></i></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

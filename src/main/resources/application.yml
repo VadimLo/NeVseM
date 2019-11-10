@@ -21,6 +21,7 @@ spring:
             enable: true
     protocol: smtp
     test-connection: false
+
 security:
   jwt:
     token:

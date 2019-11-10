@@ -1,13 +1,15 @@
-<a routerLink="/users" class="btn btn-link">users</a>
 <div style="display: flex">
-  <div class="card-cust" *ngFor="let ts of tshirts">
+  <div class="card-cust card" *ngFor="let ts of tshirts ;let i = index">
     <mdb-card>
       <div class="view rgba-white-slight waves-light" mdbWavesEffect>
         <!-- Card img -->
-        <mdb-card-img [src]="ts.image" alt="Card image cap"></mdb-card-img>
-        <a>
-          <div class="mask"></div>
-        </a>
+        <div class="view overlay">
+          <mdb-card-img [src]="ts.image" alt="Card image cap"></mdb-card-img>
+
+          <a routerLink="/buy">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
       </div>
       <!--Card content-->
       <mdb-card-body>
@@ -20,35 +22,35 @@
         <mdb-card-text> {{ts.style}}
         </mdb-card-text>
 
-        <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a>
+        <a routerLink="/buy" (click)="buy(ts)" mdbBtn color="primary" mdbWavesEffect>Button</a>
       </mdb-card-body>
     </mdb-card>
   </div>
 
-<!--  <div class="card-cust">-->
-<!--    <mdb-card>-->
-<!--      <div class="view rgba-white-slight waves-light" mdbWavesEffect>-->
-<!--        &lt;!&ndash; Card img &ndash;&gt;-->
-<!--        <mdb-card-img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap"></mdb-card-img>-->
-<!--        <a>-->
-<!--          <div class="mask"></div>-->
-<!--        </a>-->
-<!--      </div>-->
-<!--      &lt;!&ndash;Card content&ndash;&gt;-->
-<!--      <mdb-card-body>-->
-<!--        &lt;!&ndash;Title&ndash;&gt;-->
-<!--        <mdb-card-title>-->
-<!--          <h4>Card Title</h4>-->
-<!--        </mdb-card-title>-->
+  <!--  <div class="card-cust">-->
+  <!--    <mdb-card>-->
+  <!--      <div class="view rgba-white-slight waves-light" mdbWavesEffect>-->
+  <!--        &lt;!&ndash; Card img &ndash;&gt;-->
+  <!--        <mdb-card-img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap"></mdb-card-img>-->
+  <!--        <a>-->
+  <!--          <div class="mask"></div>-->
+  <!--        </a>-->
+  <!--      </div>-->
+  <!--      &lt;!&ndash;Card content&ndash;&gt;-->
+  <!--      <mdb-card-body>-->
+  <!--        &lt;!&ndash;Title&ndash;&gt;-->
+  <!--        <mdb-card-title>-->
+  <!--          <h4>Card Title</h4>-->
+  <!--        </mdb-card-title>-->
 
-<!--        &lt;!&ndash;Text&ndash;&gt;-->
-<!--        <mdb-card-text> Some quick example text to build on the card title and make up the bulk of the card's-->
-<!--          content.-->
-<!--        </mdb-card-text>-->
+  <!--        &lt;!&ndash;Text&ndash;&gt;-->
+  <!--        <mdb-card-text> Some quick example text to build on the card title and make up the bulk of the card's-->
+  <!--          content.-->
+  <!--        </mdb-card-text>-->
 
-<!--        <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a>-->
-<!--      </mdb-card-body>-->
-<!--    </mdb-card>-->
-<!--  </div>-->
+  <!--        <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a>-->
+  <!--      </mdb-card-body>-->
+  <!--    </mdb-card>-->
+  <!--  </div>-->
 
 </div>

@@ -32,6 +32,8 @@ import { AdministrationComponent } from './administration/administration.compone
 
 import AdminModule from "./administration/admin.module";
 import { ModalEditComponent } from './modal-edit/modal-edit.component';
+import { TshirtBuyComponent } from './tshirt-buy/tshirt-buy.component';
+import {DataService} from "./tshirt-buy/data.service";
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { ModalEditComponent } from './modal-edit/modal-edit.component';
     MultiAlertsComponent,
     UserPageComponent,
     NavbarComponent,
-    ModalEditComponent
+    ModalEditComponent,
+    TshirtBuyComponent
 
 
 
@@ -70,7 +73,7 @@ import { ModalEditComponent } from './modal-edit/modal-edit.component';
   providers: [
     UserService,
     AuthGuard,
-
+    DataService,
     AuthService,
     User,
     TShirt,
