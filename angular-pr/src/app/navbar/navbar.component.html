@@ -29,7 +29,7 @@
         <!--        </button>-->
 
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/page">My account</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect (click)="toPage()" routerLink="/page">My account</a>
           <a *ngIf="isAdmin()" class="dropdown-item waves-light" mdbWavesEffect routerLink="/admin">Administration</a>
 
           <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/login" (click)="logout()">Log out</a>

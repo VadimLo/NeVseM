@@ -1,4 +1,46 @@
+<div class="w-75 p-3 text-center mx-auto"  style="background-color: #eee;margin-bottom: 30px">
+  <table class="table " style="margin-bottom: 15px">
+    <thead>
+    <tr>
+      <th scope="col">{{user.firstName}}</th>
+      <th scope="col">{{user.lastName}}</th>
+      <th scope="col">Email: {{user.email}}</th>
+      <th scope="col">Username: {{user.username}}</th>
+
+    </tr>
+    </thead>
+
+  </table>
+
+
+  <table class="table ">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let el of user.tshirts">
+      <th scope="row" style="vertical-align: middle">{{el.name}}</th>
+      <td style="vertical-align: middle">{{el.style}}</td>
+      <td style="vertical-align: middle">{{el.tags}}</td>
+      <td style="vertical-align: middle">{{el.description}}</td>
+      <td ><img [src]="el.image" style="max-height: 150px"></td>
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
 <div class="container preview" data-spy="scroll" data-target=".subnav" data-offset="80">
+  <div id="fade" class="fadeing">
+    <button id="remove-but" class=" btn-danger fade-but" (click)="flip()">Create you own design</button>
+  </div>
+
   <section id="typography" class="selection">
     <div class="page-header">
       <h1>Customize T-Shirt</h1>
@@ -165,8 +207,8 @@
 
         </div>
         <!--	EDITOR      -->
-        <div id="shirtDiv" class="page"
-             style="width: 530px; height: 630px; position: relative; background-color: rgb(255, 255, 255);">
+        <div id="shirtDiv" class="page" [ngStyle]="{position:isActive?'relative':'inherit'}"
+             style="width: 530px; height: 630px;  background-color: rgb(255, 255, 255);">
           <img name="tshirtview" id="tshirtFacing" [src]="crew_front">
           <div id="drawingArea"
                style="position: absolute;top: 100px;left: 160px;z-index: 10;width: 200px;height: 400px;">
@@ -264,10 +306,7 @@
 
 
 </div><!-- /container -->
-<div id="fade" class="fadeing">
 
-</div>
-<button id="remove-but" class=" btn-danger fade-but" (click)="flip()">Create you own design</button>
 <!-- Footer ================================================== -->
 
 <button (click)="renderImage1()">render</button>

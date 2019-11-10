@@ -17,6 +17,7 @@ import {AuthService} from "../auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import {TShirt} from "../auth/tshirt";
+import {DataService} from "../tshirt-buy/data.service";
 
 @Component({
   selector: 'app-user-page',
@@ -33,7 +34,7 @@ import {TShirt} from "../auth/tshirt";
 })
 export class UserPageComponent implements OnInit {
   registerForm: FormGroup;
-
+  user:any;
   submitted = false;
   img: any;
   upImage: any;
@@ -49,7 +50,8 @@ export class UserPageComponent implements OnInit {
   constructor(private userService: UserService,
               private authService: AuthService,
               private formBuilder: FormBuilder,
-              private tshirt: TShirt) {
+              private tshirt: TShirt,
+              private data: DataService,) {
 
 
 
@@ -90,9 +92,9 @@ export class UserPageComponent implements OnInit {
 
 
   }
-
+  isActive:boolean=false;
   flip() {
-
+    this.isActive=true;
     this.loadScript8();
 
     this.loadScript1();
@@ -107,6 +109,8 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.data.currentUser.subscribe(user=>this.user=user);
     this.loadScript();
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],

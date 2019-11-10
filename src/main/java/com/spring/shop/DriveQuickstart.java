@@ -117,7 +117,7 @@ public class  DriveQuickstart {
                         create(fileMetadata, content)
                         .setFields("id")
                         .execute();
-        System.out.println("File ID: " + file2.getId());
+        System.out.println("File ID: " + file2.getWebContentLink());
 
 
         return file2.getId();

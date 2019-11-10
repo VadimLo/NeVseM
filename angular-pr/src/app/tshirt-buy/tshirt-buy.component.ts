@@ -19,7 +19,10 @@ export class TshirtBuyComponent implements OnInit {
     this.data.currentTshirt.subscribe(message => {
       this.message = message;
       this.userService.findUserByTshirtId(this.message.id).subscribe(
-        user => this.user = user
+        user =>{
+          this.user = user;
+          this.data.setUser(user);
+        }
       );
     });
 

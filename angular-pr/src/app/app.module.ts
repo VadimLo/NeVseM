@@ -34,7 +34,7 @@ import AdminModule from "./administration/admin.module";
 import { ModalEditComponent } from './modal-edit/modal-edit.component';
 import { TshirtBuyComponent } from './tshirt-buy/tshirt-buy.component';
 import {DataService} from "./tshirt-buy/data.service";
-
+import { WavesModule, TableModule } from 'angular-bootstrap-md';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +68,8 @@ import {DataService} from "./tshirt-buy/data.service";
     NgxFileDropModule,
     BrowserAnimationsModule,
     IconsModule,
+    WavesModule,
+    TableModule
   ],
   entryComponents: [ ModalEditComponent ],
   providers: [

@@ -13,10 +13,10 @@ import java.security.GeneralSecurityException;
 public class test {
 
     private static Drive drive;
-    @Test
-    public  void mser() throws IOException, GeneralSecurityException {
-
-            System.out.println(DriveQuickstart.downloadImage("1dEBUhRIyJdaIyfLNoGmyOmMQbA86KbNF"));
-
-    }
+//    @Test
+//    public  void mser() throws IOException, GeneralSecurityException {
+//
+//            System.out.println(DriveQuickstart.downloadImage("1dEBUhRIyJdaIyfLNoGmyOmMQbA86KbNF"));
+//
+//    }
 }

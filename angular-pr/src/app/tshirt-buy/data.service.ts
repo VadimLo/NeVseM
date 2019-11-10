@@ -7,11 +7,15 @@ export class DataService {
   private oneTshirt = new BehaviorSubject('default message');
   currentTshirt = this.oneTshirt.asObservable();
 
-  private five = new BehaviorSubject<any[]>([]) ;
-  fiveTs  = this.five.asObservable();
+  private user = new BehaviorSubject('default message');
+  currentUser = this.user.asObservable();
+
+  private five = new BehaviorSubject<any[]>([]);
+  fiveTs = this.five.asObservable();
 
 
-  constructor() { }
+  constructor() {
+  }
 
   changeMessage(message: any) {
     this.oneTshirt.next(message)
@@ -21,5 +25,8 @@ export class DataService {
     this.five.next(message)
   }
 
+  setUser(message: any) {
+    this.user.next(message);
+  }
 
 }

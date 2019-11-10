@@ -76,8 +76,22 @@ public class ImageController {
     @GetMapping("/tshirt/{id}")
     public User getUserByTshirt(@PathVariable Long id){
         TShirt tShirt=tShirtRepository.findFirstById(id);
+        User user = userRepository.findByUserId(tShirt.getUser().getUserId());
+        List<TShirt> tShirts = user.getTShirts();
+        tShirts.forEach(Shirt -> {
+            try {
+                Shirt.setImage(DriveQuickstart.downloadImage(Shirt.getImage()));
+            } catch (GeneralSecurityException e) {
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        user.setTShirts(tShirts);
+
        // tShirt.us
-        return userRepository.findByUserId(tShirt.getUser().getUserId()) ;
+        return user  ;
 
     }
 

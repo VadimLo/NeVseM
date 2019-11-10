@@ -1,5 +1,7 @@
 package com.spring.shop.controller;
 
+import com.spring.shop.DriveQuickstart;
+import com.spring.shop.model.TShirt;
 import com.spring.shop.model.User;
 import com.spring.shop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +14,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,6 +56,24 @@ public class UserController {
 
         return userRepository.save(existing);
 
+    }
+    @GetMapping("/users/{id}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public User getUser(@PathVariable Long id){
+        User user = userRepository.findByUserId(id);
+        List<TShirt> tShirts = user.getTShirts();
+        tShirts.forEach(Shirt -> {
+            try {
+                Shirt.setImage(DriveQuickstart.downloadImage(Shirt.getImage()));
+            } catch (GeneralSecurityException e) {
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        user.setTShirts(tShirts);
+        return user;
     }
 
     public static void copyNonNullProperties(Object src, Object target) {
