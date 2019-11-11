@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 import {User} from "./auth";
 import {Observable} from "rxjs";
 import {TShirt} from "./auth/tshirt";
+import {Headers} from "@angular/http";
 
 @Injectable()
 export class UserService {

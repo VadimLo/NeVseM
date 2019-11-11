@@ -40,6 +40,7 @@ export class UserPageComponent implements OnInit {
   upImage: any;
 
   crew_front: any = "../assets/img/crew_front.png";
+  crew_frontW: any = "../assets/img/womens_crew_front.png";
   invisibleman: any = "../assets/img/invisibleman.jpg";
   font_bold: any = "../assets/img/font_bold.png";
   font_italic: any = "../assets/img/font_italic.png";
@@ -77,7 +78,7 @@ export class UserPageComponent implements OnInit {
       console.log(dataUrl);
       this.img = new Image();
       this.img.src = dataUrl;
-      document.getElementById("screensh").appendChild(this.img);
+    //  document.getElementById("screensh").appendChild(this.img);
       this.tshirt.image=dataUrl;
       console.log(this.tshirt.image+" after add");
       this.tshirt.user=JSON.parse(localStorage.getItem('user'));
@@ -122,20 +123,7 @@ export class UserPageComponent implements OnInit {
 
   }
 
-  renderImage1() {
-    // htmlToImage.toPng(document.getElementById('shirtDiv')).then(dataUrl => {
-    //   console.log(dataUrl);
-    //   this.img = new Image();
-    //   this.img.src = dataUrl;
-    //   document.getElementById("screensh").appendChild(this.img);
-    //   this.tshirt.image=dataUrl;
-    //
-    // })
-    //   .catch(function (error) {
-    //     console.error('oops, something went wrong!', error);
-    //   });
-    console.log(localStorage.getItem('user'));
-  }
+
 
 
   imgURL: any;
