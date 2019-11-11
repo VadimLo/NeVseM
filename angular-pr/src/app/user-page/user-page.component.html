@@ -314,3 +314,18 @@
 
 <!-- Footer ================================================== -->
 
+<div class="w-responsive w-50 p-3 mx-auto " style="background-color: #eee;  margin-top: 20px">
+  <div class="form-group shadow-textarea">
+    <label for="exampleFormControlTextarea6">Comments</label>
+    <textarea [(ngModel)]="defaultValue" class="form-control z-depth-1" id="exampleFormControlTextarea6" #titleInput rows="3"
+              placeholder="Write something here..."></textarea>
+    <button class="btn" type="submit" (click)="addComment(titleInput.value)">Add</button>
+  </div>
+
+  <div *ngFor="let el of com" style="margin: 25px; background-color: white;">
+    <div>Username:<a routerLink="/page"> {{user.username}}</a></div>
+    <div>{{el}}</div>
+  </div>
+
+  <div></div>
+</div>

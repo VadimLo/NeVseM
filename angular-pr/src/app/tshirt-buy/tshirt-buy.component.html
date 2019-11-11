@@ -1,24 +1,27 @@
-<div class="">
-  <div class="w-responsive w-50 p-3 mx-auto " style="background-color: #eee; display: flex;">
+
+<div class="" style="margin-bottom: 30px">
+
+
+  <div class="w-responsive w-50 p-3 mx-auto " style="background-color: #eee; display: flex; margin: 10px">
     <div class="d-inline-block">
       <img [src]="message.image">
     </div>
     <div class="d-inline-block container" style=" width: 100%; margin: 15px; ">
       <div class="row">
-        <div class="col"><h4>Name</h4> </div>
+        <div class="col"><h4>Name</h4></div>
         <div class="col"> {{message.name}}</div>
       </div>
       <div class="row">
-        <div class="col"> <h4>Tags</h4></div>
+        <div class="col"><h4>Tags</h4></div>
         <div class="col"> {{message.style}}</div>
       </div>
       <div class="row">
-        <div class="col"><h4>Description</h4> </div>
+        <div class="col"><h4>Description</h4></div>
         <div class="col"> {{message.description}}</div>
       </div>
       <div class="row">
-        <div class="col"> <h4>Made by</h4> </div>
-        <div class="col" *ngIf="user.username"><a routerLink="/page"  >{{user.username}}</a> </div>
+        <div class="col"><h4>Made by</h4></div>
+        <div class="col" *ngIf="user.username"><a routerLink="/page">{{user.username}}</a></div>
       </div>
 
 
@@ -49,7 +52,7 @@
             </tr>
           </table>
 
-          <button type="button" class="btn btn-large btn-block btn-success" >Buy
+          <button type="button" class="btn btn-large btn-block btn-success">Buy
             <i class="icon-briefcase icon-white"></i></button>
         </div>
       </div>
@@ -58,4 +61,21 @@
   </div>
 
 
+
+
+</div>
+<div class="w-responsive w-50 p-3 mx-auto " style="background-color: #eee; ">
+  <div class="form-group shadow-textarea">
+    <label for="exampleFormControlTextarea6">Comments</label>
+    <textarea [(ngModel)]="defaultValue" class="form-control z-depth-1" id="exampleFormControlTextarea6" #titleInput rows="3"
+              placeholder="Write something here..."></textarea>
+    <button class="btn" type="submit" (click)="addComment(titleInput.value)">Add</button>
+  </div>
+
+  <div *ngFor="let el of com" style="margin: 25px; background-color: white;">
+    <div>Username:<a routerLink="/page"> {{user.username}}</a></div>
+    <div>{{el}}</div>
+  </div>
+
+  <div></div>
 </div>

@@ -196,7 +196,7 @@ export class UserPageComponent implements OnInit {
     console.log(event);
   }
 
-
+  com = [];
   public loadScript() {
     let body = <HTMLDivElement>document.head;
     let script = document.createElement('script');
@@ -206,6 +206,14 @@ export class UserPageComponent implements OnInit {
     script.defer = true;
     body.appendChild(script);
   }
+  addComment( str:string){
+
+    this.defaultValue = '';
+
+    this.com.push(str);
+  }
+
+  defaultValue: string = '';
 
   public loadScript1() {
 

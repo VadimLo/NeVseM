@@ -11,9 +11,20 @@ export class TshirtBuyComponent implements OnInit {
   user: any= null;
   message: any;
 
+
   constructor(private data: DataService,
               private userService: UserService) {
   }
+  com = [];
+  addComment( str:string){
+
+    this.defaultValue = '';
+
+    this.com.push(str);
+  }
+
+  defaultValue: string = '';
+
 
   ngOnInit() {
     this.data.currentTshirt.subscribe(message => {
