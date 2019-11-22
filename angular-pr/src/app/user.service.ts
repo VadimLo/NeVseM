@@ -32,7 +32,7 @@ export class UserService {
   }
   saveImg(tshirt: TShirt){
 
-    return this.authHttp.post(`${environment.serverUrl}img/hi`,tshirt);
+    return this.authHttp.post(`${environment.serverUrl}img/save`,tshirt);
   }
   findAllTshirts(){
     return this.authHttp.get(`${environment.serverUrl}tshirts`).map(res => res.json());

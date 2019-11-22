@@ -34,7 +34,7 @@ public class ImageController {
     private final TShirtRepository tShirtRepository;
     private final UserRepository userRepository;
 
-    @PostMapping("/img/hi")
+    @PostMapping("/img/save")
     @ResponseStatus(value = HttpStatus.OK)
     public void getUsers(@RequestBody TShirt tShirt) throws IOException, GeneralSecurityException {
        //System.out.println(file);

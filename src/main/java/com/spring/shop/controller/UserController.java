@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,13 +22,13 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     // standard constructors
-
-    private final UserRepository userRepository;
+    @Autowired
+    public UserRepository userRepository;
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
