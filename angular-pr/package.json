@@ -27,7 +27,7 @@
     "angular2-draggable": "^2.3.2",
     "angular2-jwt": "latest",
     "animate.css": "^3.7.2",
-    "chart.js": "^2.5.0",
+    "chart.js": "^2.9.4",
     "environments": "latest",
     "fabric": "^3.4.0",
     "hammerjs": "^2.0.8",
